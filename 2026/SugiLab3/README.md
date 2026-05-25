@@ -5,7 +5,7 @@
 ## 公開 URL（見本）
 
 ### 練習① 完成見本
-https://toyo-univ-international-tourism.github.io/Tourism-Digital-Media-Practices/2026/SugiLab3/practice1/
+https://toyo-univ-international-tourism.github.io/Tourism-Digital-Media-Practices/2026/SugiLab3/practice1/index.html
 
 ### 練習② 完成見本
 - シーン 1: https://toyo-univ-international-tourism.github.io/Tourism-Digital-Media-Practices/2026/SugiLab3/practice2/scene1.html
