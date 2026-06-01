@@ -10,6 +10,11 @@
 
 ## 現在の収録
 - `itsukushima.jpg` — 厳島神社 (Unsplash: Nicki Eliza Schinow)
-
-## 追加予定
-スライド作成担当が国内有名観光地の画像を 5-8 枚追加予定。
+- `ishigaki.jpg` ー石垣島（Unsplash:Vladimir Haltakov）
+- `mtfuji.jpg`　ー富士山（Unsplash:Luke Stackpoole）
+- `kyoto.jpg`　ー京都（Unsplash: Roméo A.）
+- `nagoyacastle.jpg`ー名古屋城（Unsplash:Steffen Triekels）
+- `hibuya.jpg`ー渋谷（Unsplash:Timo Volz）
+- `tokyotower.jpg`ー東京タワー（Unsplash:Matt Mutlu）
+- `hakuba.jpg`ー白馬（Unsplash:Nguyen TP Hai）
+- `tyuraumi.jpg`ー美ら海水族館（Unsplash:Susann Schuster）
