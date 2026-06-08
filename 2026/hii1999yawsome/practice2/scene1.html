@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>白山キャンパス360</title>
+    <!-- A-Frameの読み込み -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <!-- 作成したjsファイルの読み込み -->
+    <script src="js/vr-link.js"></script>
+</head>
+
+<body>
+    <!-- シーン -->
+    <a-scene>
+        <!-- 360度画像 -->
+        <a-sky src="360pic/360picture1.jpg" rotation="0 -90 0"></a-sky>
+        <!-- シーン2への遷移アイコン -->
+        <a-image src="icon/arrow.png" width="1.5" height="1.5" rotation="-70 0 0" position="0 -1 -10"
+            scene-link="link: scene2.html"></a-image>
+        <!-- カメラとカーソルの追加 -->
+        <a-entity camera look-controls cursor="rayOrigin: mouse; fuse: false"></a-entity>
+    </a-scene>
+</body>
+
+</html>
