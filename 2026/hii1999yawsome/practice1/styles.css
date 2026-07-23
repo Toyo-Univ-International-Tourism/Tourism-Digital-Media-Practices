@@ -1,6 +1,6 @@
 body {
   font-family: Meiryo;
-  background-color: red !important;
+  background-color: #DDFF88;
   text-align: center;
 }
 
@@ -23,4 +23,11 @@ button {
 #infoTitle {
   color: #c31717;
   font-size: 20px;
+}
+
+header,
+main,
+section,
+footer {
+  background-color: transparent;
 }
