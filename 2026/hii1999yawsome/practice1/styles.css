@@ -1,21 +1,21 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  font-family: Meiryo;
+  background-color: yellow-green;
   text-align: center;
 }
 
 h1 {
   color:#333;
-  font-size: 28px;
+  font-size: 35px;
   margin-top: 20px;
 }
 
 button {
-  background-color: #008CBA;
+  background-color: orange;
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   margin-top: 20px;
 }
