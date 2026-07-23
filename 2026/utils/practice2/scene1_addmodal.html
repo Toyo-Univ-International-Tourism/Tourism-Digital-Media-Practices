@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>白山キャンパス360</title>
+        <!-- A-Frameの読み込み -->
+        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+        <script src="js/vr-link.js"></script>
+
+        <!-- remodalのCSS -->
+        <link rel="stylesheet" type="text/css" 
+            href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.css">
+        <link rel="stylesheet" type="text/css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal-default-theme.min.css">
+
+        <!-- jQuery とremodal.js の読み込み -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.js"></script>
+    </head>
+    <body>
+        <!-- シーン -->
+        <a-scene>
+            <!-- 360度画像 -->
+            <a-sky src="360pic/360picture1.jpg" rotation="0 -90 0"></a-sky>
+            <!-- シーン2への遷移アイコン -->
+            <a-image src="icon/arrow.png" width="1.5" height="1.5" rotation="-70 0 0" position="0 -1 -10"
+                scene-link="link: scene2.html"></a-image>
+            <!-- 情報アイコン -->
+            <a-image src="icon/photo-icon.png" position="1.25 1.9 -4" 
+                scale="0.3 0.3 0.3" id="info-button"></a-image>
+            <!-- カメラとカーソルの追加 -->
+            <a-entity camera look-controls cursor="rayOrigin: mouse; fuse: false"></a-entity>
+        </a-scene>
+
+        <!-- 静止画のコンテンツ表示 -->
+        <div class="remodal" data-remodal-id="modal-info">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            <h2>井上円了像</h2>
+            <img src="img/enryostatue.jpg" alt="井上円了像" class="modal-image">
+            <p style="text-align: left">井上円了像は、東洋大学を創立した哲学者の姿を今に伝えます。
+                「哲学の普及」と「実験的仏教の育成」を掲げた円了の教育理念は、現在の東洋大学の礎となっています。</p>
+            <button data-remodal-action="cancel" class="remodal-cancel">閉じる</button>
+        </div>
+
+        <!-- モーダルウィンドウ起動スクリプト -->
+        <script type="text/javascript">
+            $('#info-button').on('click', function () {
+                $('[data-remodal-id=modal-info]').remodal().open();
+            });
+        </script>
+
+        <!-- モーダルウィンドウのスタイル -->
+        <style>
+            .remodal {
+                width:70%;
+            }
+            .modal-image {
+                width: 100%;
+                height: auto;
+            }
+        </style>
+    </body>
+</html>
