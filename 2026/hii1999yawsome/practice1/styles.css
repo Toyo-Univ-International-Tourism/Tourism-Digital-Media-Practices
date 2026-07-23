@@ -1,55 +1,57 @@
-/* ページ全体 */
 body {
-  margin: 0;
-  font-family: "Meiryo", sans-serif;
-  background-color: #DDFF88;
-  text-align: center;
+    font-family: "Noto Sans JP", Arial, sans-serif;
+    background-color: #DDFF88;
+    text-align: center;
+    margin: 0;
 }
 
-/* タイトル */
 h1 {
-  color: #333;
-  font-size: 32px;
-  margin: 20px 0;
+    color: #333;
+    font-size: 28px;
+    margin-top: 20px;
 }
 
-/* ボタン */
 button {
-  background-color: #FF9900;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 20px;
+    background-color: #FF9900;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
 }
 
 button:hover {
-  background-color: #e68a00;
-}
-
-/* 情報表示エリア */
-#infoContainer {
-  display: none;
-  margin-top: 30px;
+    background-color: #E68A00;
 }
 
 #infoTitle {
-  color: #c31717;
-  font-size: 24px;
-  font-weight: bold;
+    color: #C31717;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 #infoDesc {
-  font-size: 18px;
-  line-height: 1.6;
-  white-space: pre-line; /* \n を改行として表示 */
+    color: #333;
+    font-size: 15px;
+    white-space: pre-line;
+}
+
+#infoContainer {
+    margin-top: 15px;
+    display: none;
 }
 
 #infoImage {
-  margin-top: 20px;
-  max-width: 400px;
-  width: 100%;
-  height: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+}
+
+.container {
+    width: 400px;
+    height: 200px;
 }
