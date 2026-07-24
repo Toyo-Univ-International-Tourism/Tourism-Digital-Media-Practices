@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>観光 × デジタルメディア × AI（講義）｜観光デジタルメディア演習</title>
+<style>
+  :root{
+    --navy:#1f3a5c; --blue:#2166a8; --link:#2f6fb2;
+    --teal:#2b9ca8; --green:#3f9e57; --purple:#7a5cc7; --orange:#d97a26; --red-note:#c0392b;
+    --code-bg:#f2f3f5; --ink:#21303a; --muted:#5b6b73; --line:#d7dde2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;background:#4a4f55;}
+  body{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic","Meiryo",sans-serif;color:var(--ink);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  #stage{width:1120px;height:790px;position:relative;transform-origin:center center;}
+  .slide{position:absolute;inset:0;background:#fff;padding:54px 62px 52px;display:none;flex-direction:column;}
+  .slide.active{display:flex;}
+
+  .head{display:flex;align-items:center;gap:20px;margin-bottom:22px;}
+  .chip{display:inline-block;font-weight:700;font-size:15px;padding:7px 18px;color:#fff;white-space:nowrap;letter-spacing:.04em;}
+  .c-kanko{background:var(--teal);} .c-lp{background:var(--green);} .c-ai{background:var(--purple);} .c-pro{background:var(--orange);} .c-pe{background:#2f6fb2;}
+  thead.pe th{background:#2f6fb2;border-color:#2f6fb2;}
+  .badge{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:#2f6fb2;border-radius:4px;padding:1px 8px;margin:1px 3px 1px 0;white-space:nowrap;}
+  .badge.neg{background:var(--red-note);}
+  .anno{display:flex;gap:16px;align-items:flex-start;margin-bottom:9px;}
+  .anno .pp{flex:1.35;background:var(--code-bg);border:1px solid #e4e8ec;border-radius:7px;padding:9px 13px;font-size:13.5px;line-height:1.5;}
+  .anno .tt{flex:1;padding-top:2px;}
+  .anno .pp .h{font-weight:800;color:var(--navy);}
+  .head h2{font-size:30px;font-weight:800;color:var(--navy);line-height:1.22;}
+
+  h3.sub{color:var(--blue);font-size:19px;font-weight:800;margin:6px 0 12px;}
+  .lead{font-size:19px;line-height:1.7;margin-bottom:16px;}
+  p,li{font-size:17px;line-height:1.68;}
+  .sm{font-size:15px;} .muted{color:var(--muted);} .note{color:var(--red-note);font-weight:700;}
+  b,strong{color:var(--navy);}
+  .cols{display:flex;gap:30px;} .col{flex:1;}
+  ul{margin:0 0 0 1.2em;} li{margin-bottom:8px;}
+  .tag{font-family:Consolas,Menlo,monospace;background:#eef1f4;padding:1px 6px;border-radius:4px;font-size:.9em;color:#2a4d63;}
+  .key{background:#fff6e9;border:1px solid #f0d9b0;border-left:6px solid var(--orange);border-radius:8px;padding:13px 18px;font-size:16.5px;line-height:1.6;}
+  .key .kl{display:block;font-weight:800;color:var(--orange);font-size:13.5px;margin-bottom:5px;letter-spacing:.04em;}
+  .quote{background:#f4f1fb;border:1px solid #ddd3f2;border-left:6px solid var(--purple);border-radius:8px;padding:13px 18px;font-size:16.5px;line-height:1.6;}
+
+  .code{background:var(--code-bg);border-radius:8px;padding:15px 19px;font-family:Consolas,Menlo,monospace;font-size:14px;line-height:1.6;color:#2c3a44;white-space:pre-wrap;border:1px solid #e4e8ec;}
+  .code .c{color:#4a9e5c;} .code .t{color:#c0392b;} .code .s{color:#2166a8;}
+
+  table{width:100%;border-collapse:collapse;font-size:15.5px;}
+  th,td{border:1px solid var(--line);padding:9px 13px;text-align:left;vertical-align:top;line-height:1.5;}
+  thead th{color:#fff;font-weight:700;}
+  thead.teal th{background:var(--teal);border-color:var(--teal);}
+  thead.green th{background:var(--green);border-color:var(--green);}
+  thead.purple th{background:var(--purple);border-color:var(--purple);}
+  thead.orange th{background:var(--orange);border-color:var(--orange);}
+  tbody tr:nth-child(even){background:#f8f9fb;}
+
+  .steps{display:flex;gap:14px;margin-top:4px;}
+  .step{flex:1;background:#f7f9fb;border:1px solid #e2e8ee;border-radius:10px;padding:14px 16px;}
+  .step .n{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;font-size:14px;margin-bottom:8px;}
+  .step h4{font-size:15.5px;color:var(--navy);margin-bottom:5px;} .step p{font-size:13.5px;color:#3a4a54;line-height:1.5;}
+
+  .loop{display:flex;align-items:center;flex-wrap:wrap;gap:9px;font-size:16px;margin:10px 0;}
+  .loop .b{background:#fff6e9;border:1px solid #f0d9b0;border-radius:8px;padding:9px 15px;font-weight:700;color:#8a5416;}
+  .loop .ar{color:var(--muted);font-weight:800;font-size:18px;}
+
+  .pageno{position:absolute;right:32px;bottom:20px;color:#9aa6ad;font-size:13.5px;}
+  .footnote{margin-top:auto;color:var(--muted);font-size:13px;padding-top:12px;}
+
+  .title-slide{align-items:center;justify-content:center;text-align:center;}
+  .title-slide .kicker{color:var(--orange);font-weight:800;letter-spacing:.18em;font-size:15px;margin-bottom:24px;}
+  .title-slide h1{font-size:46px;font-weight:900;color:var(--navy);line-height:1.18;margin-bottom:20px;}
+  .title-slide .subj{font-size:20px;font-weight:700;color:#3a4a54;}
+  .toc{text-align:left;margin:26px auto 0;max-width:760px;}
+  .toc div{font-size:18px;margin-bottom:10px;color:#3a4a54;}
+  .toc b{color:var(--navy);}
+
+  #nav{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:10;background:rgba(0,0,0,.35);padding:6px 12px;border-radius:999px;color:#fff;font-size:12.5px;}
+  #nav button{background:#fff;color:#333;border:none;border-radius:6px;padding:4px 12px;font-size:14px;cursor:pointer;font-weight:700;}
+  #nav button:hover{background:#e8e8e8;} #nav .hint{opacity:.8;margin-left:6px;}
+  @media print{@page{size:1120px 790px;margin:0;}html,body{background:#fff;height:auto;display:block;overflow:visible;}#stage{transform:none!important;width:1120px;height:auto;}.slide{display:flex!important;position:relative;inset:auto;width:1120px;height:790px;page-break-after:always;break-after:page;}#nav{display:none;}}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- 1 タイトル -->
+  <section class="slide title-slide no-number active">
+    <p class="kicker">LECTURE / DAY 2</p>
+    <h1>観光 × デジタルメディア × AI<br><span style="font-size:.6em;">― 作る前に「なぜ・どう」を知る ―</span></h1>
+    <p class="subj">観光デジタルメディア演習（2日目・座学）</p>
+    <div class="toc">
+      <div><b>第1部</b>　観光と没入メディア（導入）</div>
+      <div><b>第2部</b>　LP（ランディングページ）とマーケティング</div>
+      <div><b>第3部</b>　AIはどうやって文章・コードを作るのか</div>
+      <div><b>第4部</b>　プロンプトエンジニアリング</div>
+      <div><b>第5部</b>　プロはAIをどう使うか</div>
+    </div>
+  </section>
+
+  <!-- 2 導入 -->
+  <section class="slide">
+    <div class="head"><h2 style="color:var(--navy);">この座学のねらい</h2></div>
+    <p class="lead">今日はツールで「作れる」時代。だからこそ、<b>作る前に "なぜ・どう" を理解する</b>ことが差になります。</p>
+    <div class="cols">
+      <div class="col">
+        <h3 class="sub">今日 手を動かして作るもの</h3>
+        <ul><li>バーチャルツアー（制作ソフト）</li><li>紹介ページ（自作・AI活用）</li><li>GitHubで公開</li></ul>
+      </div>
+      <div class="col">
+        <h3 class="sub">この座学で持ち帰るもの</h3>
+        <ul>
+          <li><b>LPとは何か</b>・なぜその形にするか（マーケの視点）</li>
+          <li><b>AIの仕組み</b>と限界（うのみにしない力）</li>
+          <li><b>プロの開発の進め方</b>（AIとの付き合い方）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="key" style="margin-top:20px;"><span class="kl">今日の問い</span>ツールとAIで誰でも作れる時代に、<b>あなたにしか作れないもの</b>とは何だろう？</div>
+  </section>
+
+  <!-- ===== 第1部 観光と没入メディア ===== -->
+  <!-- 3 なぜVRツアー -->
+  <section class="slide">
+    <div class="head"><span class="chip c-kanko">第1部　観光と没入メディア</span><h2>なぜ今、バーチャルツアーか</h2></div>
+    <p class="lead">観光のデジタル化（観光DX）で、旅の体験は<b>現地に行く前後</b>にも広がっています。</p>
+    <table>
+      <thead class="teal"><tr><th style="width:20%;">旅の段階</th><th>デジタルメディアの役割</th></tr></thead>
+      <tbody>
+        <tr><td><b>旅マエ</b></td><td>行き先を選ぶ・期待を高める。<b>バーチャルツアーで下見</b>／意思決定を後押し</td></tr>
+        <tr><td><b>旅ナカ</b></td><td>現地での案内・多言語対応・ARやマップ連携</td></tr>
+        <tr><td><b>旅アト</b></td><td>思い出の共有・再訪の動機づけ・SNS拡散</td></tr>
+      </tbody>
+    </table>
+    <h3 class="sub" style="margin-top:20px;">身近な例</h3>
+    <p>Google ストリートビュー／Arts &amp; Culture、Matterport（不動産・宿の内見）、自治体のVR観光、Kuula・360°写真の観光プロモ。<br>
+      <span class="muted sm">コロナ禍で「行けない時に体験を届ける」需要が一気に広がり、定着した領域。</span></p>
+    <div class="footnote">※ 没入メディア＝写真や動画より「その場にいる感覚」を強く与えるメディア（360°・VR・3D）。</div>
+  </section>
+
+  <!-- 4 技術的正体 -->
+  <section class="slide">
+    <div class="head"><span class="chip c-kanko">第1部　観光と没入メディア</span><h2>360°ツアーの"技術的な正体"</h2></div>
+    <p class="lead">なぜ、あの重たそうな全天球画像がブラウザで滑らかに回るのか？ 仕組みを知ると使いこなせます。</p>
+    <div class="cols">
+      <div class="col">
+        <h3 class="sub">① 正距円筒図法（equirectangular）</h3>
+        <p>球体の360°風景を、世界地図のように<b>1枚の横長画像に引き伸ばして</b>保存する方式。上下ほど横に伸びる。</p>
+        <div class="code"><span class="c">// 2:1 の横長パノラマ画像</span>
+[========= 360°を平面に展開 =========]</div>
+      </div>
+      <div class="col">
+        <h3 class="sub">② タイル化 ＋ WebGL</h3>
+        <p>巨大画像を<b>小さなタイルに分割</b>し、見ている方向だけを読み込む。描画はGPUを使う<b>WebGL</b>で高速に。</p>
+        <p class="sm muted">この演習の<b>制作ソフト</b>が使う <b>krpano</b> は、この「タイル化＋WebGL表示」を担うエンジン。だから大きな画像でも軽い。</p>
+      </div>
+    </div>
+    <div class="key" style="margin-top:16px;"><span class="kl">だから</span>元画像は<b>高解像度で撮る</b>ほどよい。でも配信は<b>タイル化</b>で軽くなる ―「重い素材を軽く届ける」技術。</div>
+  </section>
+
+  <!-- ===== 第2部 LPとマーケティング ===== -->
+  <!-- 5 LPとは -->
+  <section class="slide">
+    <div class="head"><span class="chip c-lp">第2部　LPとマーケティング</span><h2>LP（ランディングページ）とは</h2></div>
+    <p class="lead"><b>ランディング＝着地</b>。広告やSNS・検索から来た人が<b>最初に降り立つ1ページ</b>のこと。</p>
+    <div class="cols">
+      <div class="col">
+        <table style="font-size:15px;">
+          <thead class="green"><tr><th>Webサイト</th><th>LP</th></tr></thead>
+          <tbody>
+            <tr><td>複数ページの集合</td><td><b>基本1ページ</b></td></tr>
+            <tr><td>回遊・情報提供</td><td><b>1つの行動</b>を促す</td></tr>
+            <tr><td>メニューで探す</td><td>上から下へ<b>物語で説得</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col">
+        <h3 class="sub">観光でのLPの例</h3>
+        <ul>
+          <li>宿・ツアーの<b>予約ページ</b></li>
+          <li>イベント・キャンペーンの<b>特設ページ</b></li>
+          <li>観光地の<b>魅力紹介＋体験への入口</b></li>
+        </ul>
+      </div>
+    </div>
+    <div class="key" style="margin-top:16px;"><span class="kl">今日作る"紹介ページ"</span>これも<b>LPの一種</b>。「バーチャルツアーへの入口」＝訪問者に<b>ツアーを見てもらう</b>ことがゴール。</div>
+  </section>
+
+  <!-- 6 コンバージョン -->
+  <section class="slide">
+    <div class="head"><span class="chip c-lp">第2部　LPとマーケティング</span><h2>LPの目的＝「行動してもらう」</h2></div>
+    <p class="lead">LPの成否は<b>コンバージョン</b>（＝訪問者が目的の行動をした割合）で測ります。</p>
+    <h3 class="sub">人が行動するまでの流れ（AIDAモデル）</h3>
+    <div class="loop" style="background:#f5faf6;padding:14px;border-radius:10px;">
+      <span class="b" style="color:#2f7a45;background:#eef7ef;border-color:#cbe5cf;">A 注意<br><span class="sm" style="font-weight:400;">目を引く</span></span><span class="ar">→</span>
+      <span class="b" style="color:#2f7a45;background:#eef7ef;border-color:#cbe5cf;">I 興味<br><span class="sm" style="font-weight:400;">魅力を伝える</span></span><span class="ar">→</span>
+      <span class="b" style="color:#2f7a45;background:#eef7ef;border-color:#cbe5cf;">D 欲求<br><span class="sm" style="font-weight:400;">体験したくさせる</span></span><span class="ar">→</span>
+      <span class="b" style="color:#2f7a45;background:#eef7ef;border-color:#cbe5cf;">A 行動<br><span class="sm" style="font-weight:400;">ツアーを見る</span></span>
+    </div>
+    <ul style="margin-top:16px;">
+      <li>この流れを作る仕掛けが <b>CTA（Call To Action＝行動喚起）</b>。今日なら「ツアーを見る」ボタン。</li>
+      <li>だからLPは「かっこいい」より、<b>迷わず行動できる</b>ことが大事。</li>
+    </ul>
+  </section>
+
+  <!-- 7 良いLPの構成要素 -->
+  <section class="slide">
+    <div class="head"><span class="chip c-lp">第2部　LPとマーケティング</span><h2>良いLPの構成要素</h2></div>
+    <table>
+      <thead class="green"><tr><th style="width:26%;">要素</th><th>役割</th></tr></thead>
+      <tbody>
+        <tr><td><b>ファーストビュー</b></td><td>最初の画面。<b>3秒で「何のページか」</b>を伝える（キャッチコピー＋主役の画像）</td></tr>
+        <tr><td><b>価値提案</b></td><td>「あなたにこう良い」を具体的に。観光なら"どんな体験ができるか"</td></tr>
+        <tr><td><b>証拠・信頼</b></td><td>写真・実例・クチコミ・制作者。"本当らしさ"を支える</td></tr>
+        <tr><td><b>CTA（行動ボタン）</b></td><td>「ツアーを見る」など。迷わせない・目立たせる</td></tr>
+      </tbody>
+    </table>
+    <div class="key" style="margin-top:18px;"><span class="kl">レイアウトは自由</span>これらが伝わればよく、<b>縦長でなくてもよい</b>。1画面完結・左右分割・カード型…目的に合う形を選ぶ。</div>
+  </section>
+
+  <!-- 8 情報設計 -->
+  <section class="slide">
+    <div class="head"><span class="chip c-lp">第2部　LPとマーケティング</span><h2>情報設計 ― 見た目より先に「順番」</h2></div>
+    <p class="lead">デザインの前に決めるのが<b>情報設計</b>。<b>誰に・何を・どの順で</b>伝えるか。</p>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><h4>誰に</h4><p>ターゲットを1人に絞る（例：宮古島旅行を検討中の20代）</p></div>
+      <div class="step"><span class="n">2</span><h4>何を</h4><p>一番伝えたい価値を1つ（例：透明な海を360°で体験）</p></div>
+      <div class="step"><span class="n">3</span><h4>どの順で</h4><p>掴む→魅せる→信頼→行動、の流れを組む</p></div>
+    </div>
+    <div class="key" style="margin-top:22px;"><span class="kl">つながり</span>この「誰に・何を・どの順で」が、<b>企画シート</b>と<b>AIへの指示</b>の中身になる。<br>順番が決まっていれば、AIは正確に形にしてくれる。</div>
+  </section>
+
+  <!-- ===== 第3部 AIの仕組み ===== -->
+  <!-- 9 AIはどう作るか -->
+  <section class="slide">
+    <div class="head"><span class="chip c-ai">第3部　AIの仕組み</span><h2>AIはどうやって文章・コードを作るのか</h2></div>
+    <p class="lead">ChatGPTやClaudeの正体は <b>大規模言語モデル（LLM）</b>。やっていることは意外とシンプルです。</p>
+    <div class="quote"><span style="font-weight:800;color:var(--purple);">その本質＝「次に来る単語を、確率で予測し続ける」</span><br>
+      大量の文章で学習し、「この続きに最もふさわしい単語」を1つずつ選んで文を作る。コードも"それらしい続き"として生成される。</div>
+    <div class="cols" style="margin-top:18px;">
+      <div class="col">
+        <h3 class="sub">得意なこと</h3>
+        <ul><li>ありふれた・定型的なコードやパターン</li><li>下書き・たたき台の高速生成</li><li>言い換え・要約・翻訳</li></ul>
+      </div>
+      <div class="col">
+        <h3 class="sub">苦手なこと</h3>
+        <ul><li>正確な事実・最新情報</li><li>"本当に正しいか"の保証</li><li>あなたの意図を勝手に理解すること</li></ul>
+      </div>
+    </div>
+    <div class="footnote">※ AIは「意味を理解している」のではなく「もっともらしさ」を計算している ― ここが限界の源。</div>
+  </section>
+
+  <!-- 10 なぜ間違える -->
+  <section class="slide">
+    <div class="head"><span class="chip c-ai">第3部　AIの仕組み</span><h2>なぜ"自信満々で間違える"のか</h2></div>
+    <table>
+      <thead class="purple"><tr><th style="width:30%;">現象</th><th>理由</th></tr></thead>
+      <tbody>
+        <tr><td><b>ハルシネーション</b><br><span class="sm muted">それっぽい嘘</span></td><td>「正しさ」ではなく「もっともらしさ」で選ぶため、存在しない関数やURLを<b>堂々と</b>作る</td></tr>
+        <tr><td><b>最新情報に弱い</b></td><td>ある時点までのデータで学習（<b>学習カットオフ</b>）。それ以降の出来事や新しい仕様は知らない</td></tr>
+        <tr><td><b>断定口調</b></td><td>「自信のなさ」を表す仕組みがない。間違いも正解も<b>同じ口調</b>で言う</td></tr>
+        <tr><td><b>文脈に引きずられる</b></td><td>直前のやり取りに合わせようとして、間違った前提を<b>そのまま拡大</b>することがある</td></tr>
+      </tbody>
+    </table>
+    <div class="key" style="margin-top:18px;"><span class="kl">だから鉄則</span><b>「AIの出力は"下書き"。正しいかは人間が確かめる」</b> ― これがAIリテラシーの核心。</div>
+  </section>
+
+  <!-- 11 AIリテラシー -->
+  <section class="slide">
+    <div class="head"><span class="chip c-ai">第3部　AIの仕組み</span><h2>使う側のリテラシー</h2></div>
+    <div class="cols">
+      <div class="col">
+        <h3 class="sub">必ずやる</h3>
+        <ul>
+          <li><b>動かして確かめる</b>（コードは実行、事実は出典で裏取り）</li>
+          <li><b>複数の情報源で照合</b>する</li>
+          <li>使った箇所は<b>自分で説明できる</b>ようにする</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3 class="sub">やってはいけない</h3>
+        <ul>
+          <li><b>個人情報・機密</b>を入力する（学習・漏えいリスク）</li>
+          <li>中身を理解せず<b>丸コピー</b>して提出する</li>
+          <li>AIの答えを<b>そのまま事実</b>として使う</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:18px;">AIは「答えをくれる機械」ではなく、<b>「一緒に考える相棒」</b>。最終判断は人間の責任。</div>
+  </section>
+
+  <!-- 12 AIコーディングの現在地 -->
+  <section class="slide">
+    <div class="head"><span class="chip c-ai">第3部　AIの仕組み</span><h2>AIコーディングの現在地</h2></div>
+    <p class="lead">いま、プロの開発現場でもAIが日常的に使われています。主な道具を知っておこう。</p>
+    <table>
+      <thead class="purple"><tr><th style="width:26%;">ツール</th><th>どんなもの</th></tr></thead>
+      <tbody>
+        <tr><td><b>ChatGPT / Claude</b></td><td>対話でコードや文章を作る。今日はこれを使う（Claude無料版が中心）</td></tr>
+        <tr><td><b>GitHub Copilot</b></td><td>エディタ上で書きかけのコードの<b>続きを提案</b>してくれる補完AI</td></tr>
+        <tr><td><b>Cursor / Claude Code</b></td><td>プロジェクト全体を理解し、<b>複数ファイルをまとめて</b>編集する開発特化AI</td></tr>
+      </tbody>
+    </table>
+    <div class="key" style="margin-top:18px;"><span class="kl">押さえどころ</span>道具は進化しても<b>使い方の原則は同じ</b> ―「意図を伝える・小さく試す・人が検証する」。<br>今日その原則を体で覚えれば、どのツールにも応用できる。</div>
+  </section>
+
+  <!-- ===== 第4部 プロンプトエンジニアリング ===== -->
+  <!-- PE-1 とは -->
+  <section class="slide">
+    <div class="head"><span class="chip c-pe">第4部　プロンプトエンジニアリング</span><h2>プロンプトエンジニアリングとは</h2></div>
+    <p class="lead">AIから<b>狙いどおりの出力を引き出すための「指示（プロンプト）の設計」</b>。プログラミングというより<b>「伝え方の設計」</b>です。</p>
+    <div class="quote"><span style="font-weight:800;color:var(--purple);">同じAIでも、頼み方で結果は激変する。</span><br>
+      AIは指示の言葉を手がかりに"もっともらしい続き"を作る。<b>手がかりが具体的なほど、狙いに収束する。</b></div>
+    <div class="cols" style="margin-top:18px;">
+      <div class="col">
+        <h3 class="sub">なぜ効くのか</h3>
+        <ul><li>曖昧な指示＝AIが"勝手に補完"→ ばらつく</li><li>具体的な指示＝選択肢が絞られ、意図に近づく</li></ul>
+      </div>
+      <div class="col">
+        <h3 class="sub">なぜ大事か</h3>
+        <ul><li>実務でも<b>必須スキル</b>（企画・広報・制作すべてで）</li><li>「AIを使える人」＝<b>うまく指示できる人</b></li></ul>
+      </div>
+    </div>
+    <div class="footnote">※ 高価な専門知識ではなく、「何を・どう伝えるか」を整える力。今日その型を身につける。</div>
+  </section>
+
+  <!-- PE-2 基本フレーム -->
+  <section class="slide">
+    <div class="head"><span class="chip c-pe">第4部　プロンプトエンジニアリング</span><h2>プロンプトの基本フレーム（5要素）</h2></div>
+    <p class="lead">迷ったらこの順で書けばよい ―<b>「役割・目的・タスク・制約・出力形式」</b>。</p>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><h4>役割</h4><p>AIに立場を与える<br>「Web制作の先生として」</p></div>
+      <div class="step"><span class="n">2</span><h4>目的・文脈</h4><p>何のために作るか<br>「観光の入口となる紹介ページを作る」</p></div>
+      <div class="step"><span class="n">3</span><h4>タスク</h4><p>やってほしいこと<br>「紹介ページのHTMLを作る」</p></div>
+      <div class="step"><span class="n">4</span><h4>制約・条件</h4><p>守るルール<br>「3ファイル・直書き禁止」</p></div>
+      <div class="step"><span class="n">5</span><h4>出力形式</h4><p>どう返すか<br>「まずHTMLだけ」</p></div>
+    </div>
+    <div class="key" style="margin-top:22px;"><span class="kl">ポイント</span>全部を毎回入れる必要はない。ただし<b>「タスク＋制約＋具体」</b>が薄いと、必ず期待外れになる。</div>
+  </section>
+
+  <!-- PE-3 主要テクニック -->
+  <section class="slide">
+    <div class="head"><span class="chip c-pe">第4部　プロンプトエンジニアリング</span><h2>主要テクニック一覧</h2></div>
+    <table style="font-size:14.5px;">
+      <thead class="pe"><tr><th style="width:22%;">技法</th><th style="width:40%;">何をする</th><th>例</th></tr></thead>
+      <tbody>
+        <tr><td><b>役割付与</b><br><span class="sm muted">Role</span></td><td>AIに立場・専門性を与える</td><td>「あなたはWeb制作の先生です」</td></tr>
+        <tr><td><b>構造化・分解</b></td><td>見出しで項目を整理して渡す</td><td>【構成】【内容】【デザイン】…</td></tr>
+        <tr><td><b>具体化</b></td><td>数値・色・実際の文言まで指定</td><td>「#4A9FD8」「高さ500px」「見出しは"宮古島、青の記憶"」</td></tr>
+        <tr><td><b>否定制約</b></td><td>やってほしくないことを明示</td><td>「style属性やscript直書きは<b>禁止</b>」</td></tr>
+        <tr><td><b>例示</b><br><span class="sm muted">Few-shot</span></td><td>見本・代用を示す</td><td>「画像はplaceholderのURLで代用」</td></tr>
+        <tr><td><b>段階化</b></td><td>作業を小さく区切って頼む</td><td>「まずindex.htmlだけ」</td></tr>
+        <tr><td><b>反復改善</b></td><td>出力を見て指示を重ねる</td><td>「ボタンにホバー効果を追加して」</td></tr>
+      </tbody>
+    </table>
+    <div class="footnote">※ 次のスライドで、みんなが実際に試したプロンプトを、この技法で"解剖"します。</div>
+  </section>
+
+  <!-- PE-4 実例解剖 -->
+  <section class="slide">
+    <div class="head"><span class="chip c-pe">第4部　プロンプトエンジニアリング</span><h2>実例で解剖：宮古島 紹介ページのプロンプト</h2></div>
+    <p class="lead sm" style="margin-bottom:12px;">実際に使われたプロンプト。各ブロックが、どの技法を使っているか見てみよう。</p>
+    <div class="anno">
+      <div class="pp"><span class="h">観光地の紹介ページを作ってください</span></div>
+      <div class="tt"><span class="badge">タスク</span></div>
+    </div>
+    <div class="anno">
+      <div class="pp"><span class="h">【構成】</span>3ファイルに分ける／CSS・JSは外部ファイルで読み込む／<b>直書きは禁止</b></div>
+      <div class="tt"><span class="badge">構造化</span><span class="badge">制約</span><span class="badge neg">否定制約</span></div>
+    </div>
+    <div class="anno">
+      <div class="pp"><span class="h">【内容】</span>テーマ＝宮古島／見出し「宮古島、青の記憶」／説明3行／サムネ3枚（<b>placeholderで代用</b>）／ボタン挙動／iframe仕様（高さ500px・初期非表示）</div>
+      <div class="tt"><span class="badge">具体化</span><span class="badge">例示</span></div>
+    </div>
+    <div class="anno">
+      <div class="pp"><span class="h">【デザイン】</span>白背景／アクセント <b>#4A9FD8</b>／余白広め／ゴシック系</div>
+      <div class="tt"><span class="badge">具体化</span><span class="badge">制約</span></div>
+    </div>
+    <div class="anno" style="margin-bottom:0;">
+      <div class="pp"><span class="h">【JavaScript】</span>ボタンクリックでiframeをフェードイン表示</div>
+      <div class="tt"><span class="badge">挙動の明示</span></div>
+    </div>
+    <div class="footnote">※ 良い点＝構造化＋具体化が徹底。改善点＝冒頭に<b>役割</b>（「あなたはWeb制作の先生」）と<b>段階化</b>（「まずHTMLだけ」）を足すとさらに安定。</div>
+  </section>
+
+  <!-- PE-5 反復で仕上げる -->
+  <section class="slide">
+    <div class="head"><span class="chip c-pe">第4部　プロンプトエンジニアリング</span><h2>1回で完成させない ― 反復で磨く</h2></div>
+    <p class="lead">最初のプロンプトは"たたき台"。出力を見て、<b>追いプロンプト</b>で理想に近づけます。</p>
+    <div class="cols">
+      <div class="col">
+        <h3 class="sub">追いプロンプトの例</h3>
+        <ul>
+          <li>「余白をもっと広く、写真を全幅で大きく」<span class="badge">具体化</span></li>
+          <li>「ボタンにホバー効果とスマホ対応を追加」<span class="badge">機能追加</span></li>
+          <li>「この行が何をしているか説明して」<span class="badge">理解</span></li>
+          <li>「エラー〇〇が出た。直して」<span class="badge">デバッグ</span></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3 class="sub">磨くときのコツ</h3>
+        <ul>
+          <li><b>1回に1テーマ</b>（あれもこれも言わない）</li>
+          <li>変えたら必ず <b>Go Liveで確認</b></li>
+          <li>良くなった状態は<b>保存</b>してから次の実験へ</li>
+        </ul>
+      </div>
+    </div>
+    <div class="key" style="margin-top:16px;"><span class="kl">これがプロの進め方</span>「完璧な1発」ではなく<b>「対話しながら育てる」</b>。第5部の"反復開発"にそのままつながる。</div>
+  </section>
+
+  <!-- ===== 第5部 プロの開発手法 ===== -->
+  <!-- 反復開発 -->
+  <section class="slide">
+    <div class="head"><span class="chip c-pro">第5部　プロの使い方</span><h2>プロは「一発で完成」を狙わない</h2></div>
+    <p class="lead">初心者は「完璧な1回」を期待しがち。プロは<b>小さく作って直す</b>を高速で回します（反復開発）。</p>
+    <div class="loop">
+      <span class="b">① 仕様<br><span class="sm" style="font-weight:400;">何を作るか決める</span></span><span class="ar">→</span>
+      <span class="b">② 生成<br><span class="sm" style="font-weight:400;">AIに作らせる</span></span><span class="ar">→</span>
+      <span class="b">③ 検証<br><span class="sm" style="font-weight:400;">動かして確認</span></span><span class="ar">→</span>
+      <span class="b">④ 修正<br><span class="sm" style="font-weight:400;">直す・頼み直す</span></span><span class="ar" style="font-size:22px;">↻</span>
+    </div>
+    <ul style="margin-top:16px;">
+      <li>1周を<b>小さく</b>する ― 「HTMLだけ」「ボタンだけ」。小さいほど原因が分かる。</li>
+      <li>この考え方は<b>アジャイル開発</b>（作りながら改善する現代の主流）と同じ発想。</li>
+    </ul>
+    <div class="footnote">※ 今日の紹介ページ制作も、この ①→②→③→④ を何周も回して仕上げる。</div>
+  </section>
+
+  <!-- 14 ペアプロ -->
+  <section class="slide">
+    <div class="head"><span class="chip c-pro">第5部　プロの使い方</span><h2>AI＝ペアプログラマ、レビューは人間</h2></div>
+    <p class="lead">プロはAIを「部下」でも「魔法」でもなく、<b>隣で一緒に書く相棒（ペアプログラマ）</b>として扱う。</p>
+    <div class="cols">
+      <div class="col">
+        <h3 class="sub">AIに任せる</h3>
+        <ul><li>下書き・定型コードの高速生成</li><li>選択肢を複数出す</li><li>エラーの原因の候補出し</li></ul>
+      </div>
+      <div class="col">
+        <h3 class="sub">人間がやる（渡せない）</h3>
+        <ul><li><b>目的・意図を決める</b>（何を作るか）</li><li><b>検証する</b>（動くか・正しいか）</li><li><b>採否を判断する</b>（採用/却下）</li></ul>
+      </div>
+    </div>
+    <div class="key" style="margin-top:16px;"><span class="kl">コツ＝コンテキストを与える</span>プロほど<b>前提を丁寧に渡す</b>：目的・既存コード・制約・出力の形。情報が多いほど的確な答えが返る。</div>
+  </section>
+
+  <!-- 15 バージョン管理 -->
+  <section class="slide">
+    <div class="head"><span class="chip c-pro">第5部　プロの使い方</span><h2>プロの安全網 ― バージョン管理</h2></div>
+    <p class="lead">AIに大胆に試せるのは、<b>「いつでも元に戻せる」</b>仕組みがあるから。それが <b>Git / GitHub</b>。</p>
+    <div class="cols">
+      <div class="col">
+        <ul>
+          <li><b>変更の履歴</b>を記録し、前の状態に戻せる（コミット）</li>
+          <li><b>誰が・いつ・何を</b>変えたか分かる</li>
+          <li>複数人で<b>同時に</b>作業できる（チーム開発の前提）</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="key"><span class="kl">今日のつながり</span>1日目に使った <b>GitHub</b> は、公開の道具であると同時に<b>プロの版管理ツール</b>。<br>「壊れたら戻せる」から、安心してAIと実験できる。</div>
+      </div>
+    </div>
+    <div class="footnote">※ 「怖くて変えられない」を無くすのが版管理。実験→失敗→戻す、を恐れないための土台。</div>
+  </section>
+
+  <!-- 16 著作権・倫理 -->
+  <section class="slide">
+    <div class="head"><span class="chip c-pro">第5部　プロの使い方</span><h2>著作権・生成物・学術的誠実性</h2></div>
+    <table>
+      <thead class="orange"><tr><th style="width:28%;">論点</th><th>気をつけること</th></tr></thead>
+      <tbody>
+        <tr><td><b>素材の権利</b></td><td>画像・音楽・地図には権利がある。<b>使用可能な素材</b>（提供素材・フリー素材・自分の撮影）を使う</td></tr>
+        <tr><td><b>AI生成物の扱い</b></td><td>生成画像・文章にも規約や権利の議論がある。<b>出所を意識</b>し、規約を確認</td></tr>
+        <tr><td><b>学術的誠実性</b></td><td>AIを使ったら<b>使ったと明示</b>する。引用は出典を示す。丸写しは剽窃</td></tr>
+        <tr><td><b>プライバシー</b></td><td>撮影に写り込む顔・ナンバー・個人情報に配慮する</td></tr>
+      </tbody>
+    </table>
+    <div class="key" style="margin-top:18px;"><span class="kl">大学生としての基本姿勢</span>「AIをどう使ったか」を<b>正直に説明できる</b>ことが、これからの時代の信頼になる。</div>
+  </section>
+
+  <!-- 17 まとめ -->
+  <section class="slide">
+    <div class="head"><h2 style="color:var(--navy);">まとめ ― AI時代に人間に残る価値</h2></div>
+    <div class="cols">
+      <div class="col">
+        <h3 class="sub">機械化されにくい4つの力</h3>
+        <ul>
+          <li><b>企画</b> ― 誰に何を伝えるかを決める</li>
+          <li><b>審美</b> ― 良し悪しを判断する目</li>
+          <li><b>検証</b> ― 正しいか確かめる責任</li>
+          <li><b>倫理</b> ― 権利・誠実さへの配慮</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="quote"><b>「作れる」</b>だけなら、いずれ誰でも・AIでもできる。<br><br><b>「なぜそう作ったか説明できる」</b>人が、価値を生む。</div>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:20px;">では、ここからは実習へ。<b>あなたの企画</b>を、AIを相棒に形にしていきましょう。</p>
+  </section>
+
+</div>
+
+<div id="nav">
+  <button onclick="prev()">◀</button><span id="counter">1 / 1</span><button onclick="next()">▶</button>
+  <span class="hint">← → / クリックで移動　·　Pで印刷(PDF)</span>
+</div>
+<script>
+  const slides=Array.from(document.querySelectorAll('.slide'));let i=0;
+  slides.forEach((s,idx)=>{if(!s.classList.contains('no-number')){const p=document.createElement('div');p.className='pageno';p.textContent=(idx+1);s.appendChild(p);}});
+  function show(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));document.getElementById('counter').textContent=(i+1)+' / '+slides.length;}
+  function next(){show(i+1);}function prev(){show(i-1);}
+  document.addEventListener('keydown',(e)=>{if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){next();e.preventDefault();}else if(e.key==='ArrowLeft'||e.key==='PageUp'){prev();e.preventDefault();}else if(e.key==='Home'){show(0);}else if(e.key==='End'){show(slides.length-1);}else if(e.key==='p'||e.key==='P'){window.print();}});
+  document.getElementById('stage').addEventListener('click',(e)=>{if(!e.target.closest('#nav'))next();});
+  function fit(){const st=document.getElementById('stage');st.style.transform='scale('+Math.min(window.innerWidth/1120,window.innerHeight/790)+')';}
+  window.addEventListener('resize',fit);fit();show(0);
+</script>
+</body>
+</html>

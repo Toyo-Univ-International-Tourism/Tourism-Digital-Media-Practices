@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>実習ガイド｜バーチャルツアー＆紹介ページ制作（2日目）</title>
+<style>
+  :root{--navy:#1f3a5c;--blue:#2166a8;--link:#2f6fb2;--cyan:#57c3d6;--green:#3f9e57;--red:#e5493c;--red-note:#c0392b;--gray-chip:#808080;--pub-blue:#3f6fc4;--code-bg:#f2f3f5;--ink:#21303a;--muted:#5b6b73;--line:#d7dde2;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;background:#4a4f55;}
+  body{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic","Meiryo",sans-serif;color:var(--ink);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  #stage{width:1120px;height:790px;position:relative;transform-origin:center center;}
+  .slide{position:absolute;inset:0;background:#fff;padding:56px 62px 54px;display:none;flex-direction:column;}
+  .slide.active{display:flex;}
+  .head{display:flex;align-items:center;gap:20px;margin-bottom:24px;}
+  .chip{display:inline-block;font-weight:700;font-size:15.5px;padding:7px 20px;color:#fff;white-space:nowrap;letter-spacing:.04em;}
+  .chip.shiru{background:var(--cyan);color:#12333a;}.chip.kikaku{background:var(--green);}.chip.tsukuru{background:var(--red);}.chip.koukai{background:var(--pub-blue);}.chip.junbi{background:var(--gray-chip);}
+  .head h2{font-size:31px;font-weight:800;color:var(--navy);line-height:1.2;}
+  h3.sub{color:var(--blue);font-size:19px;font-weight:800;margin:4px 0 12px;}
+  .lead{font-size:19px;line-height:1.7;margin-bottom:16px;}
+  p,li{font-size:17px;line-height:1.65;}.sm{font-size:15px;}.muted{color:var(--muted);}.note{color:var(--red-note);font-weight:700;}
+  b,strong{color:var(--navy);}.cols{display:flex;gap:30px;}.col{flex:1;}
+  ul{margin:0 0 0 1.2em;}li{margin-bottom:8px;}
+  .tag{font-family:Consolas,Menlo,monospace;background:#eef1f4;padding:1px 6px;border-radius:4px;font-size:.92em;color:#2a4d63;}
+  .code{background:var(--code-bg);border-radius:8px;padding:16px 20px;font-family:Consolas,Menlo,monospace;font-size:14.5px;line-height:1.6;color:#2c3a44;white-space:pre-wrap;border:1px solid #e4e8ec;}
+  .code .c{color:#4a9e5c;}.code .t{color:#c0392b;}.code .s{color:#2166a8;}.code .k{color:#8a5cc7;}
+  .prompt{background:#eef5fc;border:1px solid #cfe0f0;border-left:6px solid var(--link);border-radius:8px;padding:15px 19px;font-size:15.5px;line-height:1.7;color:#1e3547;white-space:pre-wrap;}
+  .prompt .plabel{margin-bottom:8px;}
+  .prompt .plabel{display:block;font-weight:800;font-size:13.5px;margin-bottom:6px;color:var(--link);letter-spacing:.03em;}
+  .key{background:#fff6e9;border:1px solid #f0d9b0;border-left:6px solid #d97a26;border-radius:8px;padding:13px 18px;font-size:16.5px;line-height:1.6;}
+  .key .kl{display:block;font-weight:800;color:#d97a26;font-size:13.5px;margin-bottom:5px;letter-spacing:.04em;}
+  table{width:100%;border-collapse:collapse;font-size:15.5px;}
+  th,td{border:1px solid var(--line);padding:9px 13px;text-align:left;vertical-align:top;line-height:1.5;}
+  thead th{color:#fff;font-weight:700;}
+  thead.red th{background:var(--red);border-color:var(--red);}thead.blue th{background:var(--pub-blue);border-color:var(--pub-blue);}thead.green th{background:var(--green);border-color:var(--green);}thead.gray th{background:#6b7278;border-color:#6b7278;}
+  tbody tr:nth-child(even){background:#faf7f6;}
+  td .ok{color:var(--green);font-weight:800;}td .no{color:var(--red-note);font-weight:800;}td .mid{color:#c98a1e;font-weight:800;}
+  .steps{display:flex;gap:14px;margin-top:4px;}
+  .step{flex:1;background:#f7f9fb;border:1px solid #e2e8ee;border-radius:10px;padding:14px 16px;}
+  .step .n{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;font-size:14px;margin-bottom:8px;}
+  .step h4{font-size:15.5px;color:var(--navy);margin-bottom:5px;}.step p{font-size:14px;color:#3a4a54;line-height:1.5;}
+  .flow{display:flex;align-items:center;flex-wrap:wrap;gap:9px;font-size:15px;margin-top:6px;}
+  .flow .b{background:#eef5fc;border:1px solid #cfe0f0;border-radius:8px;padding:8px 13px;font-weight:700;color:var(--navy);}
+  .flow .b.hl{background:#fdeeec;border-color:#f3ccc6;color:var(--red-note);}.flow .ar{color:var(--muted);font-weight:800;}
+  .checkbox{list-style:none;margin-left:0;}
+  .checkbox li{position:relative;padding-left:32px;font-size:17.5px;margin-bottom:11px;}
+  .checkbox li::before{content:"☑";position:absolute;left:0;color:var(--red);font-size:19px;}
+  .typecards{display:flex;gap:16px;margin-top:8px;}
+  .tc{flex:1;border:1px solid #e2e8ee;border-radius:12px;overflow:hidden;}
+  .tc .cap{padding:9px 13px;color:#fff;font-weight:800;font-size:16px;}
+  .tc.a .cap{background:#2b7fb5;}.tc.b .cap{background:#c98a1e;}.tc.c .cap{background:#7a5cc7;}
+  .tc .bd{padding:12px 14px;}.tc .bd p{font-size:14px;line-height:1.5;margin-bottom:6px;}.tc .bd .k{font-weight:800;color:var(--navy);}
+  .pageno{position:absolute;right:32px;bottom:20px;color:#9aa6ad;font-size:13.5px;}
+  .footnote{margin-top:auto;color:var(--muted);font-size:13px;padding-top:12px;}
+  .title-slide{align-items:center;justify-content:center;text-align:center;}
+  .title-slide .kicker{color:var(--red);font-weight:800;letter-spacing:.18em;font-size:15px;margin-bottom:24px;}
+  .title-slide h1{font-size:48px;font-weight:900;color:var(--navy);line-height:1.15;margin-bottom:20px;}
+  .title-slide .subj{font-size:21px;font-weight:700;color:#3a4a54;}
+  #nav{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;z-index:10;background:rgba(0,0,0,.35);padding:6px 12px;border-radius:999px;color:#fff;font-size:12.5px;}
+  #nav button{background:#fff;color:#333;border:none;border-radius:6px;padding:4px 12px;font-size:14px;cursor:pointer;font-weight:700;}#nav button:hover{background:#e8e8e8;}#nav .hint{opacity:.8;margin-left:6px;}
+  @media print{@page{size:1120px 790px;margin:0;}html,body{background:#fff;height:auto;display:block;overflow:visible;}#stage{transform:none!important;width:1120px;height:auto;}.slide{display:flex!important;position:relative;inset:auto;width:1120px;height:790px;page-break-after:always;break-after:page;}#nav{display:none;}}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- 1 タイトル -->
+  <section class="slide title-slide no-number active">
+    <p class="kicker">HANDS-ON GUIDE / DAY 2</p>
+    <h1>実習ガイド<br><span style="font-size:.6em;">バーチャルツアー＆紹介ページ制作</span></h1>
+    <p class="subj">観光デジタルメディア演習（2日目・実習）</p>
+  </section>
+
+  <!-- 2 ゴールと流れ -->
+  <section class="slide">
+    <div class="head"><span class="chip shiru">流れ</span><h2>今日のゴールと流れ</h2></div>
+    <p class="lead"><b>自分で企画したバーチャルツアーと、その入口となる紹介ページを作り、GitHubで公開する。</b></p>
+    <div class="flow" style="margin:8px 0 22px;">
+      <span class="b">① 企画</span><span class="ar">→</span>
+      <span class="b">② ツアー制作（制作ソフト）</span><span class="ar">→</span>
+      <span class="b">③ 公開設定・共有</span><span class="ar">→</span>
+      <span class="b hl">④ 紹介ページ制作（AI活用）</span><span class="ar">→</span>
+      <span class="b">⑤ GitHubで公開</span>
+    </div>
+    <table>
+      <thead class="gray"><tr><th>やること（この順で進める）</th></tr></thead>
+      <tbody>
+        <tr><td>企画（制作タイプを選び、配布の企画シートを書く）</td></tr>
+        <tr><td>撮影／素材選び</td></tr>
+        <tr><td class="note">ツアー制作 ― 今日の山場</td></tr>
+        <tr><td>公開設定・共有（URL／埋め込みコード）</td></tr>
+        <tr><td>紹介ページ制作（AI活用・3ファイル）</td></tr>
+        <tr><td>GitHubで公開 → 提出・見せ合い</td></tr>
+      </tbody>
+    </table>
+    <div class="footnote">※ 時間が足りなければ<b>シーンを減らして完成優先</b>。ツアーと紹介ページの「両方が中途半端」が一番もったいない。</div>
+  </section>
+
+  <!-- 3 何を作る（緩和版要件） -->
+  <section class="slide">
+    <div class="head"><span class="chip shiru">要件</span><h2>作るもの・必須要件</h2></div>
+    <div class="cols">
+      <div class="col">
+        <h3 class="sub">バーチャルツアー（制作ソフト）</h3>
+        <ul class="checkbox">
+          <li><b>2シーン以上</b>（3シーン推奨）</li>
+          <li>タイトルがある</li>
+          <li>（A/B）ホットスポットで移動できる</li>
+          <li><b>公開設定</b>して見られる状態</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3 class="sub">紹介ページ（自作・3ファイル）</h3>
+        <ul class="checkbox">
+          <li><b>3ファイル</b>構成（html/css/js）</li>
+          <li>タイトル・説明がある</li>
+          <li><b>ボタン等でツアーに到達</b>できる</li>
+          <li><b>JavaScriptの動き</b>が1つ以上</li>
+        </ul>
+      </div>
+    </div>
+    <div class="key" style="margin-top:14px;"><span class="kl">自由なところ（好きにやってOK）</span>
+      ・ツアーは <b>紹介ページに埋め込んでも、ボタンでリンクしてもどちらでもよい</b>（押せばしっかり見られればOK）<br>
+      ・紹介ページの<b>レイアウトは自由</b>（縦長でなくてよい）。デザインは自分の企画に合わせて</div>
+    <div class="footnote">※ 公開：最後に GitHub Pages でURL公開できていること。</div>
+  </section>
+
+  <!-- 4 制作タイプ＋素材 -->
+  <section class="slide">
+    <div class="head"><span class="chip kikaku">企画</span><h2>制作タイプを選ぶ（素材で決まる）</h2></div>
+    <div class="typecards">
+      <div class="tc a"><div class="cap">A キャンパスツアー型</div><div class="bd">
+        <p><span class="k">素材：</span>白山キャンパス（当日撮影）</p>
+        <p><span class="k">つながり：</span><span class="ok">○</span> 歩いて移動</p>
+        <p><span class="k">機能：</span>360ツアー</p></div></div>
+      <div class="tc b"><div class="cap">B 観光プロモ型</div><div class="bd">
+        <p><span class="k">素材：</span>宮古島ビーチ（提供）</p>
+        <p><span class="k">つながり：</span><span class="mid">△</span> 数シーン</p>
+        <p><span class="k">機能：</span>360ツアー</p></div></div>
+      <div class="tc c"><div class="cap">C ギャラリー型</div><div class="bd">
+        <p><span class="k">素材：</span>フリー素材30種から選ぶ</p>
+        <p><span class="k">特徴：</span>テーマ別の"展示"（各写真は独立・<span class="no">移動でつながらない</span>）</p>
+        <p><span class="k">見せ方：</span>360フォトを作り、紹介ページにサムネ一覧→クリックで開く</p></div></div>
+    </div>
+    <ul style="margin-top:18px;">
+      <li>迷ったら：歩いて移動＝<b>A</b>／1か所をじっくり＝<b>B</b>／<b>いろんな景色を集めて並べる＝C</b>。まずは<b>3シーン（3枚）</b>で。</li>
+      <li>企画（誰に・何を・どの順で）は<b>配布の企画シート</b>に記入 → 教員に見せてから制作へ。</li>
+    </ul>
+    <div class="footnote">※ ギャラリー型＝バラバラな360°写真を"作品集"のように見せる型。歩いて移動はできないので、<b>紹介ページにサムネイルを並べ、押すと各写真が開く</b>形にする（サムネ画像は<b>制作ソフトのSNSキット</b>で書き出せる）。</div>
+  </section>
+
+  <!-- 5 制作ソフトでツアー -->
+  <section class="slide">
+    <div class="head"><span class="chip tsukuru">作る</span><h2>制作ソフトでツアーを作る</h2></div>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><h4>ログイン</h4><p>制作ソフトにログイン</p></div>
+      <div class="step"><span class="n">2</span><h4>素材を取り込む</h4><p>撮影写真／提供素材／フリー素材</p></div>
+      <div class="step"><span class="n">3</span><h4>作品を新規作成</h4><p>A/B＝360ツアー<br>C＝360フォト</p></div>
+      <div class="step"><span class="n">4</span><h4>配置・移動</h4><p>A/Bは<b>ホットスポット</b>で矢印を置く</p></div>
+    </div>
+    <h3 class="sub" style="margin-top:24px;">つまずいたら</h3>
+    <ul>
+      <li>ホットスポットは<b>矢印1本</b>だけでも「動く体験」になる。凝りすぎない。</li>
+      <li>終わらない → <b>2シーンに減らす</b>。完成＞多さ。</li>
+      <li>最後に必ず<b>タイトル</b>をつける。</li>
+    </ul>
+  </section>
+
+  <!-- 6 公開設定・共有 -->
+  <section class="slide">
+    <div class="head"><span class="chip tsukuru">作る</span><h2>公開設定 → 共有（URL／埋め込み）★</h2></div>
+    <p class="lead"><b>制作ソフト上で</b>、作った作品を<b>公開設定</b>して共有情報を取得します。紹介ページからツアーに行けるように、両方コピーしておくと安心。</p>
+    <div class="flow" style="margin:8px 0 18px;">
+      <span class="b">① 制作ソフトで公開設定</span><span class="ar">→</span>
+      <span class="b">② 「共有」を開く</span><span class="ar">→</span>
+      <span class="b hl">③ リンクURL と 埋め込みコードをコピー</span>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <h3 class="sub">A：リンクURL（ボタン用）</h3>
+        <div class="code"><span class="s">https://…/v/xxxx</span>  <span class="c">← ツアー</span>
+<span class="s">https://…/s/xxxx</span>  <span class="c">← 360フォト</span></div>
+      </div>
+      <div class="col">
+        <h3 class="sub">B：埋め込みコード（貼る用）</h3>
+        <div class="code"><span class="t">&lt;iframe</span> src=<span class="s">"…?embed=1"</span> …<span class="t">&gt;&lt;/iframe&gt;</span></div>
+      </div>
+    </div>
+    <div class="key" style="margin-top:16px;"><span class="kl">どちらを使う？</span>紹介ページに<b>埋め込む</b>ならB、<b>ボタンで飛ばす</b>ならA。<b>今日はどちらでもOK</b>。コピーボタンの文字列をそのまま使う（手打ちしない）。</div>
+  </section>
+
+  <!-- 7 紹介ページを作る -->
+  <section class="slide">
+    <div class="head"><span class="chip tsukuru">作る</span><h2>紹介ページを作る（3ファイル・レイアウト自由）</h2></div>
+    <div class="cols">
+      <div class="col">
+        <table style="font-size:15px;">
+          <thead class="gray"><tr><th>ファイル</th><th>役割</th></tr></thead>
+          <tbody>
+            <tr><td><b>index.html</b></td><td>骨組み・中身</td></tr>
+            <tr><td><b>style.css</b></td><td>見た目（色・配置）</td></tr>
+            <tr><td><b>script.js</b></td><td>動き</td></tr>
+          </tbody>
+        </table>
+        <p class="sm muted" style="margin-top:10px;">※ ファイル名は半角英数字。トップは <span class="tag">index.html</span>。</p>
+      </div>
+      <div class="col">
+        <h3 class="sub">作る順番（AIで1つずつ）</h3>
+        <div class="flow" style="font-size:14px;">
+          <span class="b">① HTML</span><span class="ar">→</span><span class="b">② 差し替え</span><span class="ar">→</span><span class="b">③ CSS</span><span class="ar">→</span><span class="b">④ JS</span>
+        </div>
+        <ul style="margin-top:12px;">
+          <li>各ステップで <b>Go Live</b> で確認。</li>
+          <li>見本 <span class="tag">03_紹介ページサンプル_宮古島</span> を参考にしてOK。</li>
+          <li><b>レイアウトは自由</b>：1画面完結・左右分割・カード型など、企画に合う形で。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 ツアーへの導線 -->
+  <section class="slide">
+    <div class="head"><span class="chip tsukuru">作る</span><h2>ツアーへの導線（2通り・どちらでもOK）</h2></div>
+    <div class="cols">
+      <div class="col">
+        <h3 class="sub">方法1：ボタンでリンク（手軽）</h3>
+        <div class="code"><span class="t">&lt;a</span> href=<span class="s">"https://…/v/xxxx"</span> target=<span class="s">"_blank"</span><span class="t">&gt;</span>
+  <span class="t">&lt;button&gt;</span><span class="s">ツアーを見る</span><span class="t">&lt;/button&gt;</span>
+<span class="t">&lt;/a&gt;</span></div>
+        <p class="sm muted" style="margin-top:8px;">押すと別タブでツアーが開く。<b>まずはこれで十分</b>。</p>
+      </div>
+      <div class="col">
+        <h3 class="sub">方法2：ページに埋め込み</h3>
+        <div class="code"><span class="c">&lt;!-- 共有→埋め込みのコードを貼る --&gt;</span>
+<span class="t">&lt;iframe</span> src=<span class="s">"…?embed=1"</span>
+  width=<span class="s">"100%"</span> height=<span class="s">"480"</span> …<span class="t">&gt;&lt;/iframe&gt;</span></div>
+        <p class="sm muted" style="margin-top:8px;">ページ内でそのまま360°が回る。</p>
+      </div>
+    </div>
+    <div class="key" style="margin-top:16px;"><span class="kl">大事なのはここだけ</span>「ボタン等を押したら、<b>しっかりしたツアーが見られる</b>」こと。埋め込むか飛ばすかは自由。</div>
+    <div class="footnote">※ C ギャラリー型：サムネイル画像に各360フォトのリンクを付けて一覧にする。</div>
+  </section>
+
+  <!-- 9 プロンプトの型 -->
+  <section class="slide">
+    <div class="head"><span class="chip tsukuru">作る</span><h2>プロンプトの型（コピーして使う）</h2></div>
+    <p class="lead sm" style="margin-bottom:10px;">講義第4部の<b>5要素＋技法</b>を全部入れた"良いプロンプト"。<b>［　］を自分の企画に置きかえる。</b></p>
+    <div class="prompt"><span class="plabel">紹介ページを作ってもらうプロンプト</span>あなたは初心者にやさしい<b>Web制作の先生</b>です。〔役割〕
+<b>［観光地名］</b>を紹介し、バーチャルツアーの入口となる<b>紹介ページ</b>を作ってください。〔目的〕
+【構成】index.html / style.css / script.js の3ファイルに分ける。CSS・JSは外部ファイルで読み込み、HTMLへの直書きは禁止。〔構造化・禁止〕
+【内容】大見出し「<b>［キャッチコピー］</b>」＋一言／説明文3行／サムネ3枚（画像は https://picsum.photos で代用）／「ツアーを見る」ボタン〔具体・例示〕
+【デザイン】白背景／アクセント色 <b>［#4A9FD8］</b>／余白は広め／日本語ゴシック〔具体〕
+【動き】ボタンを押すとツアー（下部のiframe）が表示される〔タスク〕
+初心者向けに<b>日本語コメント</b>を付け、3ファイルを<b>コード全体</b>で出してください。〔出力形式〕</div>
+    <div class="cols" style="margin-top:12px;">
+      <div class="col"><h3 class="sub" style="margin:0 0 6px;">入っている要素・技法</h3>
+        <p class="sm">役割／目的／タスク／制約（＋<b>禁止</b>）／出力形式 ＋ <b>構造化【】・具体化・例示</b></p></div>
+      <div class="col"><h3 class="sub" style="margin:0 0 6px;">できたら追いプロンプト</h3>
+        <p class="sm">「余白をもっと広く」→「JSでフェードイン」→「スマホ対応」…<b>1回1テーマ</b></p></div>
+    </div>
+    <div class="footnote">※ サムネ画像は placeholder（例：<span class="tag">picsum.photos</span>）でもよいが、<b>制作ソフトのSNSキットでサムネ画像や切り出し画像を書き出して</b> images/ に置くと本物らしくなる。詳しい技法は講義「第4部 プロンプトエンジニアリング」。</div>
+  </section>
+
+  <!-- 10 AIの使い方（Web版Claude） -->
+  <section class="slide">
+    <div class="head"><span class="chip tsukuru">作る</span><h2>AIの使い方（Web版Claudeでの進め方）</h2></div>
+    <p class="lead sm" style="margin-bottom:10px;">ブラウザのClaudeは「対話 → コードをコピー → VS Codeに貼る」の繰り返し。この流れで進める。</p>
+    <div class="flow" style="margin-bottom:16px;">
+      <span class="b">① 型どおり頼む</span><span class="ar">→</span>
+      <span class="b">② 3ファイルをコピペ</span><span class="ar">→</span>
+      <span class="b">③ Go Liveで確認</span><span class="ar">→</span>
+      <span class="b hl">④ 直す所を追いプロンプト</span><span class="ar" style="font-size:18px;">↻</span>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <h3 class="sub">Web版Claudeのコツ</h3>
+        <ul>
+          <li><b>最初のプロンプトを作り込む</b>（前ページの型）。3ファイルを<b>まとめて</b>出させる</li>
+          <li>無料版は<b>メッセージ回数に上限</b>。小出しにしすぎず、<b>質問はまとめて</b></li>
+          <li>直す時は「どのファイルの・どこを・どうしたいか」を具体的に。<b>1回1テーマ</b></li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="prompt"><span class="plabel">直したい時のテンプレ</span>このコードが思ったとおり動きません。原因と直し方を初心者向けに教えて。
+・やりたいこと：（例）ボタンでツアーを開きたい
+・エラー：（F12→Consoleの赤い文）
+・コード：（動かない部分）</div>
+      </div>
+    </div>
+    <div class="footnote">※ 出てきたコードは<b>丸写しにせず、読んで自分のものに直す</b>（自分で説明できること）。個人情報は入力しない。</div>
+  </section>
+
+  <!-- 10 GitHub公開 -->
+  <section class="slide">
+    <div class="head"><span class="chip koukai">公開する</span><h2>GitHub で公開する（1日目と同じ手順）</h2></div>
+    <p class="lead sm" style="margin-bottom:10px;">公開のやり方は1日目と同じ。共有リポジトリの <b>2026</b> フォルダに、<b>作品フォルダごと</b>アップロードする。</p>
+    <table>
+      <thead class="blue"><tr><th style="width:8%;">手順</th><th>やること</th></tr></thead>
+      <tbody>
+        <tr><td>①</td><td>共有リポジトリ <span class="tag">Tourism-Digital-Media-Practices</span> を開く</td></tr>
+        <tr><td>②</td><td><b>2026</b> フォルダを開き、<b>Add file → Upload files</b> を選ぶ</td></tr>
+        <tr><td>③</td><td>今日の<b>作品フォルダごと</b>ドラッグ＆ドロップ（空フォルダは作れないのでまとめて）</td></tr>
+        <tr><td>④</td><td><b>Commit changes</b> をクリック</td></tr>
+        <tr><td>⑤</td><td>公開URLを開いて <b>表示・ツアーへの導線・JSの動き</b> を確認 → 提出</td></tr>
+      </tbody>
+    </table>
+    <div class="key" style="margin-top:12px;"><span class="kl">公開URL</span><span style="font-family:Consolas,Menlo,monospace;font-size:12px;word-break:break-all;">https://toyo-univ-international-tourism.github.io/Tourism-Digital-Media-Practices/2026/自分のフォルダ名/…/index.html</span></div>
+    <div class="footnote">※ 画面つきの詳しい手順は <b>1日目「Webコーディング体験」スライド</b>を参照。公開直後は数分ラグあり（404でも待つ）。</div>
+  </section>
+
+  <!-- 提出前チェック -->
+  <section class="slide">
+    <div class="head"><span class="chip junbi">チェック</span><h2>提出前チェック（完成の目安）</h2></div>
+    <div class="cols">
+      <div class="col">
+        <h3 class="sub">ツアー</h3>
+        <ul class="checkbox">
+          <li>2シーン以上・タイトルがある</li>
+          <li>公開設定して見られる状態</li>
+        </ul>
+        <h3 class="sub" style="margin-top:14px;">紹介ページ</h3>
+        <ul class="checkbox">
+          <li>3ファイルで表示される</li>
+          <li>ボタン等でツアーに行ける</li>
+          <li>JavaScriptの動きが1つ動く</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3 class="sub">公開</h3>
+        <ul class="checkbox">
+          <li>GitHub Pages のURLで開ける</li>
+          <li>紹介ページ → ツアーまで通しで動く</li>
+        </ul>
+        <div class="key" style="margin-top:16px;"><span class="kl">見られる観点</span>必須が揃っているか。加えて<b>「自分で説明できる」</b>こと（丸写しはNG）。デザインの工夫は加点。</div>
+      </div>
+    </div>
+    <div class="footnote">※ すべて☑になったら提出OK。迷ったら教員に見せてから提出しましょう。</div>
+  </section>
+
+  <!-- 13 まとめ -->
+  <section class="slide">
+    <div class="head"><h2 style="color:var(--navy);">まとめ ― 実習の合言葉</h2></div>
+    <ul class="checkbox">
+      <li><b>両方を完成させる</b> ― ツアーも紹介ページも "動く状態" でゴール</li>
+      <li><b>小さく作って確かめる</b> ― 1つ頼む → Go Liveで確認 → 次へ</li>
+      <li><b>ツアーへの導線は自由</b> ― 埋め込み or ボタン、押せば見られればOK</li>
+      <li><b>レイアウトは自由</b> ― 企画に合う形で作る</li>
+      <li><b>丸写ししない</b> ― 自分で説明できる状態に</li>
+    </ul>
+    <p class="lead" style="margin-top:24px;">困ったら、まず<b>企画シート</b>に戻る。手が止まったら<b>教員を呼ぶ</b>。<br>さあ、自分だけの作品を公開しよう。</p>
+  </section>
+
+</div>
+
+<div id="nav">
+  <button onclick="prev()">◀</button><span id="counter">1 / 1</span><button onclick="next()">▶</button>
+  <span class="hint">← → / クリックで移動　·　Pで印刷(PDF)</span>
+</div>
+<script>
+  const slides=Array.from(document.querySelectorAll('.slide'));let i=0;
+  slides.forEach((s,idx)=>{if(!s.classList.contains('no-number')){const p=document.createElement('div');p.className='pageno';p.textContent=(idx+1);s.appendChild(p);}});
+  function show(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));document.getElementById('counter').textContent=(i+1)+' / '+slides.length;}
+  function next(){show(i+1);}function prev(){show(i-1);}
+  document.addEventListener('keydown',(e)=>{if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){next();e.preventDefault();}else if(e.key==='ArrowLeft'||e.key==='PageUp'){prev();e.preventDefault();}else if(e.key==='Home'){show(0);}else if(e.key==='End'){show(slides.length-1);}else if(e.key==='p'||e.key==='P'){window.print();}});
+  document.getElementById('stage').addEventListener('click',(e)=>{if(!e.target.closest('#nav'))next();});
+  function fit(){const st=document.getElementById('stage');st.style.transform='scale('+Math.min(window.innerWidth/1120,window.innerHeight/790)+')';}
+  window.addEventListener('resize',fit);fit();show(0);
+</script>
+</body>
+</html>
