@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>白山キャンパス360</title>
+    <!-- A-Frameの読み込み -->
+    <script src="https://aframe.io/releases/1.8.0/aframe.min.js"></script>
+    <!-- 作成したjsファイルの読み込み -->
+    <script src="js/vr-link.js"></script>
+</head>
+        <!-- remodalのCSS -->
+        <link rel="stylesheet" type="text/css" 
+            href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.css">
+        <link rel="stylesheet" type="text/css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal-default-theme.min.css">
+
+        <!-- jQuery とremodal.js の読み込み -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.js"></script>
+<body>
+    <!-- シーン -->
+    <a-scene>
+        <!-- 360度画像 -->
+        <a-sky src="360pic/historic_cloister_passage_4k.jpg" rotation="0 -85 0"></a-sky>
+        <!-- シーン2への遷移アイコン -->
+        <a-image src="icon/arrow.png" width="0.5" height="1.5" rotation="-70 0 0" position="0 -1 -10"
+            scene-link="link: scene2.html"></a-image>
+              <!-- 情報アイコン -->
+            <a-image src="icon/photo-icon.png" position="-5 0.5 -4" 
+                scale="0.5 0.5 0.5" id="info-button"></a-image>
+        <!-- カメラとカーソルの追加 -->
+        <a-entity camera look-controls cursor="rayOrigin: mouse; fuse: false"></a-entity>
+    </a-scene>
+
+        <!-- 静止画のコンテンツ表示 -->
+        <div class="remodal" data-remodal-id="modal-info">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            <h2>異世界</h2>
+            <img src="img/無更市.jpg" alt="無更市" class="modal-image">
+            <p style="text-align: left">無更市は、ソウ・ハルミの魔法を基つき、現実と彼岸の接続区域です。
+                「中華ゲームの普及」と「着せ替えの楽しさ」を掲げた理念は、通行の是否の評価となっています。</p>
+            <button data-remodal-action="cancel" class="remodal-cancel">閉じる</button>
+        </div>
+
+        <!-- モーダルウィンドウ起動スクリプト -->
+        <script type="text/javascript">
+            $('#info-button').on('click', function () {
+                $('[data-remodal-id=modal-info]').remodal().open();
+            });
+        </script>
+
+        <!-- モーダルウィンドウのスタイル -->
+        <style>
+            .remodal { width:50%; margin: 0 auto; }
+            /* 画像は画面の高さの50%まで（縦のはみ出し防止） */
+            .modal-image { max-width: 100%; max-height: 50vh; }
+        </style>
+</body>
+
+</html>
