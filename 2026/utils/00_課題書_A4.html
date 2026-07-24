@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>課題書｜バーチャルツアー＆紹介ページ制作（2日目）</title>
+<style>
+  :root{--navy:#1f3a5c;--blue:#2166a8;--red:#e5493c;--green:#3f9e57;--ink:#222;--muted:#5b6b73;--line:#d0d6db;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#666;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic","Meiryo",sans-serif;color:var(--ink);line-height:1.6;}
+  .page{width:210mm;min-height:297mm;background:#fff;margin:14px auto;padding:16mm 16mm 14mm;box-shadow:0 2px 12px rgba(0,0,0,.3);}
+  h1{font-size:22px;color:var(--navy);font-weight:800;border-bottom:3px solid var(--navy);padding-bottom:8px;margin-bottom:4px;}
+  .sub{color:var(--muted);font-size:12.5px;margin-bottom:14px;}
+  h2{font-size:15px;color:#fff;background:var(--navy);padding:5px 12px;border-radius:4px;margin:16px 0 9px;}
+  h3{font-size:13.5px;color:var(--blue);font-weight:800;margin:12px 0 5px;}
+  p,li,td,th{font-size:12.5px;}
+  ul,ol{margin:0 0 0 1.3em;}li{margin-bottom:4px;}
+  .lead{font-size:13.5px;background:#f4f8fc;border-left:4px solid var(--blue);padding:9px 12px;border-radius:4px;}
+  .goal{font-size:14px;font-weight:700;color:var(--navy);background:#fff6e9;border:1px solid #f0d9b0;border-radius:6px;padding:10px 13px;margin-bottom:6px;}
+  table{width:100%;border-collapse:collapse;margin:6px 0;}
+  th,td{border:1px solid var(--line);padding:6px 9px;vertical-align:top;text-align:left;line-height:1.45;}
+  thead th{background:#eef2f6;color:var(--navy);font-weight:700;}
+  .two{display:flex;gap:16px;}.two>div{flex:1;}
+  .req{list-style:none;margin-left:0;}
+  .req li{position:relative;padding-left:22px;margin-bottom:5px;}
+  .req li::before{content:"☐";position:absolute;left:0;color:var(--red);font-weight:700;}
+  .free{background:#eef7ef;border:1px solid #cbe5cf;border-left:4px solid var(--green);border-radius:5px;padding:9px 12px;font-size:12.5px;}
+  .free b{color:#2f7a45;}
+  .pbox{background:#eef5fc;border:1px solid #cfe0f0;border-left:4px solid var(--blue);border-radius:5px;padding:8px 11px;font-size:11.5px;line-height:1.55;white-space:pre-wrap;margin:5px 0;}
+  .frame{background:#fff6e9;border:1px solid #f0d9b0;border-radius:5px;padding:6px 11px;font-size:12px;margin:4px 0;}
+  .frame b{color:#8a5416;}
+  .tag{font-family:Consolas,Menlo,monospace;background:#eef1f4;padding:0 4px;border-radius:3px;font-size:11.5px;color:#2a4d63;}
+  .flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;margin:4px 0;}
+  .flow .b{background:#eef5fc;border:1px solid #cfe0f0;border-radius:5px;padding:4px 9px;font-weight:700;color:var(--navy);}
+  .flow .ar{color:var(--muted);font-weight:800;}
+  .note{color:#c0392b;font-weight:700;}
+  .foot{margin-top:14px;padding-top:8px;border-top:1px dashed var(--line);font-size:11px;color:var(--muted);}
+  .pill{display:inline-block;font-size:11px;font-weight:700;color:#fff;border-radius:4px;padding:1px 8px;margin-right:4px;}
+  .pa{background:#2b7fb5;}.pb{background:#c98a1e;}.pc{background:#7a5cc7;}
+  @media print{body{background:#fff;}.page{margin:0;box-shadow:none;width:auto;min-height:auto;}@page{size:A4;margin:14mm;}.page{padding:0;}}
+</style>
+</head>
+<body>
+
+<!-- ===== 1ページ目 ===== -->
+<div class="page">
+  <h1>課題書 ― バーチャルツアー＆紹介ページ制作</h1>
+  <div class="sub">観光デジタルメディア演習（2日目）／ 制作は個人単位 ／ 提出：公開URL</div>
+
+  <div class="goal">🎯 ゴール：自分で企画したバーチャルツアーと、その入口となる紹介ページを作り、GitHubで公開する。</div>
+  <div class="flow">
+    <span class="b">紹介ページ（自分でコーディング）</span><span class="ar">→ ボタン等で →</span><span class="b">バーチャルツアー（制作ソフトで制作）</span>
+  </div>
+
+  <h2>1. 作るもの（2つ）</h2>
+  <div class="two">
+    <div>
+      <h3>① バーチャルツアー</h3>
+      <p><b>制作ソフト</b>で360°作品を作る。素材で制作タイプが決まる（下表）。</p>
+    </div>
+    <div>
+      <h3>② 紹介ページ（入口）</h3>
+      <p>1日目に学んだ <b>HTML / CSS / JavaScript</b> で自作。<b>3ファイル</b>（<span class="tag">index.html</span> / <span class="tag">style.css</span> / <span class="tag">script.js</span>）。</p>
+    </div>
+  </div>
+
+  <h2>2. 制作タイプ（1つ選ぶ）</h2>
+  <table>
+    <thead><tr><th style="width:26%;">タイプ</th><th style="width:30%;">素材</th><th>特徴・見せ方</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill pa">A</span>キャンパスツアー型</td><td>白山キャンパス（当日撮影）</td><td>歩いて移動できる。ホットスポットでシーンをつなぐ（360ツアー）</td></tr>
+      <tr><td><span class="pill pb">B</span>観光プロモ型</td><td>宮古島ビーチ（提供素材）</td><td>数シーンで魅力を伝える（360ツアー）</td></tr>
+      <tr><td><span class="pill pc">C</span>ギャラリー型</td><td>フリー素材パノラマ30種</td><td>場所はつながらない → 紹介ページにサムネイル一覧で見せる（360フォト。サムネは制作ソフトのSNSキットで書き出せる）</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. 必須要件（これが揃えば合格）</h2>
+  <div class="two">
+    <div>
+      <h3>バーチャルツアー</h3>
+      <ul class="req">
+        <li><b>2シーン以上</b>（3シーン推奨）</li>
+        <li>タイトルがある</li>
+        <li>（A/B）ホットスポットで移動できる</li>
+        <li><b>公開設定</b>して見られる状態</li>
+      </ul>
+    </div>
+    <div>
+      <h3>紹介ページ（自作3ファイル）</h3>
+      <ul class="req">
+        <li><b>3ファイル</b>構成</li>
+        <li>タイトル・説明がある</li>
+        <li><b>ボタン等でツアーに到達</b>できる</li>
+        <li><b>JavaScriptの動き</b>が1つ以上</li>
+      </ul>
+    </div>
+  </div>
+  <ul class="req" style="margin-top:4px;"><li><b>GitHub Pages で公開</b>され、URLで誰でも見られる</li></ul>
+
+  <div class="free" style="margin-top:8px;">
+    <b>■ 自由なところ（好きにやってOK）</b><br>
+    ・ツアーは <b>紹介ページに埋め込んでも、ボタンでリンクしてもどちらでもよい</b>（押せば<b>しっかりしたツアー</b>が見られればOK）<br>
+    ・紹介ページの <b>レイアウトは自由</b>（縦長でなくてよい）。デザインは自分の企画に合わせて自由に。
+  </div>
+
+  <div class="foot">※ 時間が足りないときは <b>シーン数を減らして完成を優先</b>。「ツアーと紹介ページの両方が中途半端」が一番もったいない。</div>
+</div>
+
+<!-- ===== 2ページ目 ===== -->
+<div class="page">
+  <h2>4. 進め方</h2>
+  <div class="flow">
+    <span class="b">① 企画</span><span class="ar">→</span>
+    <span class="b">② ツアー制作（制作ソフト）</span><span class="ar">→</span>
+    <span class="b">③ 公開設定・共有</span><span class="ar">→</span>
+    <span class="b">④ 紹介ページ制作（AI活用）</span><span class="ar">→</span>
+    <span class="b">⑤ GitHubで公開</span>
+  </div>
+  <ol style="margin-top:8px;">
+    <li><b>企画</b>：制作タイプを選び、配布の「企画シート」を書く（誰に・何を・どの順で／シーン構成）。</li>
+    <li><b>ツアー制作</b>：制作ソフトで<b>素材を取り込み</b>、<b>作品を新規作成</b>してシーンを配置。A/Bは矢印（ホットスポット）で移動を作る。タイトルをつける。</li>
+    <li><b>公開設定・共有</b>：<b>制作ソフト上で</b>作品を公開設定し、「共有」から <b>リンクURL</b> と <b>埋め込みコード</b> をコピーしておく。</li>
+    <li><b>紹介ページ制作</b>：AIに型どおり頼んで<b>3ファイルをまとめて</b>作り、Go Live で確認しながら仕上げる。ツアーへの導線（ボタン or 埋め込み）を入れる。</li>
+    <li><b>公開</b>：<b>1日目と同じ手順</b>で、共有リポジトリの <span class="tag">2026</span> フォルダに作品フォルダごとアップロード（GitHub Pages で公開）。URLで動作確認 → 提出。</li>
+  </ol>
+
+  <h2>5. ツアーへの導線（どちらでもOK）</h2>
+  <div class="two">
+    <div>
+      <h3>方法1：ボタンでリンク（手軽）</h3>
+      <p><span class="tag">&lt;a href="https://…/v/xxxx" target="_blank"&gt;&lt;button&gt;ツアーを見る&lt;/button&gt;&lt;/a&gt;</span></p>
+      <p class="sub" style="margin:2px 0 0;">押すと別タブでツアーが開く。まずはこれで十分。</p>
+    </div>
+    <div>
+      <h3>方法2：ページに埋め込み</h3>
+      <p>制作ソフトの「共有→埋め込み」でコピーした <span class="tag">&lt;iframe …?embed=1&gt;</span> を紹介ページに貼る。</p>
+      <p class="sub" style="margin:2px 0 0;">ページ内でそのまま360°が回る。</p>
+    </div>
+  </div>
+
+  <h2>6. AIの使い方（プロンプトの型）</h2>
+  <div class="frame">良いプロンプトは <b>①役割 ②目的 ③タスク ④制約（＋禁止）⑤出力形式</b> の5要素で組み立てる（講義 第4部）。<b>具体化・否定制約・段階化</b>の技法も使う。</div>
+  <p>下の型の <span class="tag">［　］</span> を自分の企画に置きかえて使う：</p>
+  <div class="pbox">あなたは<b>Web制作の先生</b>です〔役割〕。［観光地名］を紹介し、バーチャルツアーの入口となる紹介ページを作ってください〔目的〕。
+【構成】html/css/jsの3ファイル・外部ファイル読み込み・直書き禁止〔制約〕　【内容】見出し「［キャッチ］」／説明3行／サムネ3枚（picsum.photosで代用）／「ツアーを見る」ボタン〔具体・例示〕　【デザイン】白背景／アクセント［#色］／余白広め〔具体〕
+初心者向けにコメントを付け、3ファイルをコード全体で出してください〔出力形式〕。</div>
+  <p><b>進め方3つ：</b>①型どおりまとめて頼む（3ファイル）②すぐ確かめる（Go Live）③エラーは渡す（Consoleの赤い文をコピーして聞く）。できたら<b>追いプロンプト</b>で1回1テーマずつ改善。</p>
+  <p style="margin-top:4px;"><span class="note">注意：</span>丸写しにせず読んで直す（自分で説明できること）。個人情報は入力しない。無料版は回数制限あり＝質問はまとめて。</p>
+
+  <h2>7. 提出物</h2>
+  <ul>
+    <li>公開された <b>GitHub Pages のURL</b>（紹介ページ → ツアーまで動くこと）</li>
+    <li>作業フォルダ構成：<span class="tag">index.html / style.css / script.js</span>（＋使う画像は <span class="tag">images/</span>）</li>
+  </ul>
+
+  <h2>8. 評価の観点</h2>
+  <p>「3. 必須要件」がひととおり満たされていることが基本。加えて、次の点を見ます。</p>
+  <ul>
+    <li><b>企画</b>：想定閲覧者が明確で、制作タイプと内容が合っているか</li>
+    <li><b>完成度</b>：ツアー・紹介ページ・公開が通しで動くか</li>
+    <li><b>自分で説明できるか</b>：AIの出力を丸写しにせず、内容を理解しているか</li>
+    <li><b>工夫</b>：デザインや作り込みの工夫（加点）</li>
+  </ul>
+
+  <div class="foot">※ 完璧さよりも「両方を完成させて公開する」ことを優先。困ったら教員を呼んでください。</div>
+</div>
+
+</body>
+</html>
