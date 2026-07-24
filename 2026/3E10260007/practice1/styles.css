@@ -1,0 +1,57 @@
+body {
+    font-family: "Noto Sans JP", Arial, sans-serif; /* 使用するフォント */
+    background-color: #F4F4F4;                      /* ページ全体の背景色 */
+    text-align: center;                            /* 文字を中央揃え */
+    margin: 0;                                     /* ページ外側の余白をなくす */
+}
+
+h1 {
+    color: #333;          /* 文字色 */
+    font-size: 30px;      /* 文字サイズ */
+    margin-top: 100px;     /* 上側の余白 */
+}
+
+button {
+    background-color: #008CBA; /* ボタンの背景色 */
+    color: white;              /* ボタンの文字色 */
+    padding: 10px 20px;        /* ボタン内側の余白 */
+    border: none;              /* 枠線をなくす */
+    border-radius: 5px;        /* ボタンの角を丸くする */
+    cursor: pointer;           /* マウスカーソルを手の形にする */
+    margin-top: 20px;          /* 上側の余白 */
+    font-size: 16px;           /* ボタンの文字サイズ */
+}
+
+button:hover {
+    background-color: #0077A3; /* マウスを乗せたときの背景色 */
+}
+
+#infoTitle {
+    color: #C31717;      /* タイトルの文字色 */
+    font-size: 20px;     /* タイトルの文字サイズ */
+    font-weight: bold;   /* 太字 */
+}
+
+#infoDesc {
+    color: #333;             /* 説明文の文字色 */
+    font-size: 15px;         /* 説明文の文字サイズ */
+    white-space: pre-line;   /* \n を改行として表示する */
+}
+
+#infoContainer {
+    margin-top: 15px; /* 上側の余白 */
+    display: none;    /* 最初は非表示 */
+}
+
+#infoImage {
+    margin-top: 10px;    /* 上側の余白 */
+    border-radius: 5px;  /* 画像の角を丸くする */
+    max-width: 400px;    /* 最大幅を400pxにする */
+    width: 100%;         /* 画面幅に応じて縮小する */
+    height: auto;        /* 縦横比を維持する */
+}
+
+.container {
+    width: 400px;   /* 横幅 */
+    height: 200px;  /* 高さ */
+}
