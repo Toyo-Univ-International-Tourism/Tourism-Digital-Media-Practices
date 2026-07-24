@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    font-family: "Noto Sans JP", Arial, sans-serif;
+    background-color: #ca6303ab; /* 好きな色 */
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    font-size: 28px;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #ffffff;
+    color: rgb(210, 122, 27);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#infoContainer {
+    display: none;
+    margin-top: 15px;
+}
+
+#infoTitle {
+    color: #1e620d;
+    font-size: 20px;
+}
+
+#infoDesc {
+    color: #034007;
+    font-size: 15px;
+}
+
+#infoImage {
+    margin-top: 10px;
+    border-radius: 5px;
+}
