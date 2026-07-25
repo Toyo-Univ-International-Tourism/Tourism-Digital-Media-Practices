@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>宮古ブルー | 宮古島360°バーチャルツアー</title>
+  <meta name="description" content="宮古島の海の魅力を360°で体験できる紹介ページです。風景のプレビューとGoogleマップへのアクセスができます。">
+
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="#" class="brand">宮古ブルー</a>
+    <div class="topbar-actions">
+      <button class="top-btn" onclick="openMap()">📍 アクセス</button>
+      <button class="top-btn" onclick="enterPreview()">🖼 風景</button>
+      <button class="top-btn back-btn" id="backBtn" onclick="exitPreview()">← 戻る</button>
+    </div>
+  </header>
+
+  <section class="hero-overlay" id="overlay">
+    <div class="hero-copy">
+      <p class="eyebrow">OKINAWA / MIYAKOJIMA</p>
+      <h1>宮古島</h1>
+      <p class="sub">澄んだ海と光が広がる、南の島の風景。</p>
+
+      <div class="intro-card">
+        <p class="lead">海の青さ、岩場の表情、穏やかな空気を360°で体験。</p>
+        <p class="desc">
+          宮古島には、場所ごとに異なる海の表情があります。
+          このページでは、4つの全景写真を通して、海辺の広がりや自然の美しさを楽しめます。
+          風景ボタンでプレビューに切り替え、宮古島らしい景色を見渡してください。
+        </p>
+        <div class="hero-links">
+          <button class="main-btn" onclick="enterPreview()">Start View</button>
+          <button class="ghost-btn" onclick="openMap()">Google Map</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-note">
+      <span>360° PANORAMA</span>
+    </div>
+  </section>
+
+  <button class="nav-arrow left" onclick="prev()" aria-label="前の風景">‹</button>
+  <button class="nav-arrow right" onclick="next()" aria-label="次の風景">›</button>
+
+  <section class="scene-info">
+    <div class="scene-box">
+      <p class="scene-label">SCENE</p>
+      <h2 id="sceneTitle">ようこそ、宮古島へ</h2>
+      <p id="sceneText">
+        まずは南の島の空気を感じながら、360°の景色をゆっくり見渡してみましょう。
+      </p>
+    </div>
+  </section>
+
+  <a-scene embedded>
+    <a-assets>
+      <img id="scene1" src="images/miyako_221.jpg">
+      <img id="scene2" src="images/miyako_219.jpg">
+      <img id="scene3" src="images/miyako_243.jpg">
+      <img id="scene4" src="images/miyako_246.jpg">
+    </a-assets>
+
+    <a-sky id="sky" src="#scene1"></a-sky>
+
+    <a-entity id="cameraRig">
+      <a-camera look-controls="enabled: true"></a-camera>
+    </a-entity>
+  </a-scene>
+
+  <script src="script.js"></script>
+</body>
+</html>
