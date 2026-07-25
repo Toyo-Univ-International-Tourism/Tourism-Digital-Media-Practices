@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>宮古、ブルーの記憶 ― 島あるき（観光プロモ型 見本）</title>
+<meta name="description" content="動く360°のヒーローと、マップガイドで島をめぐる観光ガイドの見本。" />
+
+<!-- Webフォント -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet" />
+
+<!-- ▼ デザイン（CSS）は style.css に分離 -->
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="mast" id="mast">
+  <a href="#top" class="logo">島あるき</a>
+  <nav>
+    <a href="#story">読みもの</a>
+    <a href="#islandmap">島の地図</a>
+  </nav>
+</header>
+
+<!-- HERO（背景で自動回転する360°） -->
+<section class="hero" id="top">
+  <div class="hero-360" id="heroFrame"></div>
+  <div class="badge-live"><span class="dot"></span>LIVE 360°</div>
+  <div class="hero-inner">
+    <span class="kicker">Okinawa / Miyakojima</span>
+    <h1>宮古<small>― ブルーの記憶をたどる島あるき</small></h1>
+  </div>
+  <div class="scroll-hint">SCROLL<span></span></div>
+</section>
+
+<!-- LEDE（読みもの・短め） -->
+<section class="lede" id="story">
+  <span class="label">A walk around the blue</span>
+  <h2>橋を渡り、岬に立ち、浜に降りる。<br><em>宮古島</em>は、青の濃さで場所を覚えている。</h2>
+
+  <div class="lede-body" data-reveal>
+    <div class="rule"></div>
+    <p class="first">「宮古ブルー」と呼ぶには惜しいほど、この島の海は時間と天気で表情を変える。深い藍、明るいエメラルド、砂に近づくほど白くほどける水色。</p>
+    <p>島と島は、海の上をまっすぐ走る橋でつながっている。宮古を歩くとは、いくつもの青を渡り歩くことだ。</p>
+  </div>
+</section>
+
+<!-- CLOSING ＋ ツアーボタン（この位置のまま・動かさない） -->
+<section class="end">
+  <span class="kicker">Made with 制作ソフト</span>
+  <h2 style="margin-top:16px;">この島を、<br>歩きにいく。</h2>
+  <p>実際のバーチャルツアーで、島の景色を360°で。ドラッグでぐるりと見渡せます。</p>
+  <a href="https://viewtoly-mvp-462744124914.asia-northeast1.run.app/v/qnE9g2lpSD1H"
+     target="_blank" rel="noopener" class="btn">ツアーを見る →</a>
+</section>
+
+<!-- マップガイド：ページの一番下（中央寄せ・横幅ひろめ） -->
+<section class="mapsection" id="islandmap">
+  <div class="map-wrap" data-reveal>
+    <div class="mapguide-box">
+      <iframe class="mapguide"
+        src="https://viewtoly-mvp-462744124914.asia-northeast1.run.app/c/v-Da0EVqDUbZ?embed=1"
+        allow="fullscreen; accelerometer; gyroscope" allowfullscreen loading="lazy"
+        title="宮古島マップガイド"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot">
+    <a href="#top" class="logo">島あるき</a>
+    <span>© 2026 島あるき ― 見本</span>
+    <span class="pw">Powered by <b>制作ソフト</b></span>
+  </div>
+</footer>
+
+<!-- 自分の動き（script.js） -->
+<script src="script.js"></script>
+</body>
+</html>
