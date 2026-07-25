@@ -17,8 +17,7 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -46,7 +45,7 @@ a-scene {
   justify-content: space-between;
   align-items: center;
   padding: 20px 32px;
-  background: linear-gradient(to bottom, rgba(0, 25, 35, 0.4), rgba(0, 25, 35, 0));
+  background: linear-gradient(to bottom, rgba(0, 25, 35, 0.36), rgba(0, 25, 35, 0));
 }
 
 .brand {
@@ -77,7 +76,7 @@ a-scene {
 }
 
 .top-btn:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.94);
   color: var(--main-dark);
   transform: translateY(-2px);
 }
@@ -94,8 +93,8 @@ a-scene {
   align-items: center;
   padding: 7vw;
   background:
-    linear-gradient(to right, rgba(4, 28, 39, 0.64), rgba(4, 28, 39, 0.22) 46%, rgba(4, 28, 39, 0.08)),
-    linear-gradient(to top, rgba(4, 28, 39, 0.58), rgba(4, 28, 39, 0.08));
+    linear-gradient(to right, rgba(4, 28, 39, 0.62), rgba(4, 28, 39, 0.2) 45%, rgba(4, 28, 39, 0.08)),
+    linear-gradient(to top, rgba(4, 28, 39, 0.58), rgba(4, 28, 39, 0.06));
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
@@ -216,7 +215,7 @@ a-scene {
 }
 
 .nav-arrow:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.94);
   color: var(--main-dark);
 }
 
@@ -244,7 +243,7 @@ a-scene {
   width: min(760px, 100%);
   padding: 18px 22px;
   border-radius: 22px;
-  background: rgba(8, 24, 32, 0.38);
+  background: rgba(8, 24, 32, 0.36);
   border: 1px solid rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(12px);
   box-shadow: var(--shadow);
