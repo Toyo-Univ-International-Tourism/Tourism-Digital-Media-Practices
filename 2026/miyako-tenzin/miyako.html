@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>宮古ブルー | 宮古島360°バーチャルツアー</title>
-  <meta name="description" content="宮古島の海の魅力を360°で体験できる紹介ページです。風景のプレビューとGoogleマップへのアクセスができます。">
+  <title>宮古島 | Miyako Island</title>
+  <meta name="description" content="宮古島の海と景色を体験できる360°バーチャルページです。Googleマップへのアクセスと風景プレビューも楽しめます。">
 
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,8 +32,8 @@
         <p class="lead">海の青さ、岩場の表情、穏やかな空気を360°で体験。</p>
         <p class="desc">
           宮古島には、場所ごとに異なる海の表情があります。
-          このページでは、4つの全景写真を通して、海辺の広がりや自然の美しさを楽しめます。
-          風景ボタンでプレビューに切り替え、宮古島らしい景色を見渡してください。
+          このページでは、4つの全景写真を通して、海辺の道、空と海の広がり、
+          岩場の風景、そして静かなビーチの雰囲気を楽しめます。
         </p>
         <div class="hero-links">
           <button class="main-btn" onclick="enterPreview()">Start View</button>
@@ -62,10 +62,10 @@
 
   <a-scene embedded>
     <a-assets>
-      <img id="scene1" src="images/miyako_221.jpg">
-      <img id="scene2" src="images/miyako_219.jpg">
-      <img id="scene3" src="images/miyako_243.jpg">
-      <img id="scene4" src="images/miyako_246.jpg">
+      <img id="scene1" src="miyako_221.jpg">
+      <img id="scene2" src="miyako_219.jpg">
+      <img id="scene3" src="miyako_243.jpg">
+      <img id="scene4" src="miyako_246.jpg">
     </a-assets>
 
     <a-sky id="sky" src="#scene1"></a-sky>
