@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>日本一美しい海「宮古ブルー」― 日本で出会う絶景の海</title>
+  <meta name="description" content="宮古島の美しい海と自然を紹介し、360°バーチャルツアーへ案内する観光プロモーションページです。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="mast" id="mast">
+    <a href="#top" class="logo">宮古ブルー</a>
+    <nav aria-label="メインナビゲーション">
+      <a href="#story">宮古島の魅力</a>
+      <a href="#scenes">ツアーの見どころ</a>
+      <a href="tour/index.html">Start Tour</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top" aria-label="宮古島の海">
+      <div class="hero-slides" aria-hidden="true">
+        <img src="img/miyako_242.jpg" alt="" class="hero-slide active" />
+        <img src="img/miyako_246.jpg" alt="" class="hero-slide" />
+        <img src="img/miyako_221.jpg" alt="" class="hero-slide" />
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="badge-live"><span class="dot"></span>MIYAKO ISLAND</div>
+      <div class="hero-inner">
+        <span class="kicker">Okinawa / Miyakojima</span>
+        <h1>日本一美しい海<small>「宮古ブルー」へようこそ</small></h1>
+        <p class="hero-copy">日本で出会う、世界級の青。</p>
+        <a href="tour/index.html" class="hero-button">Start Tour <span>→</span></a>
+      </div>
+      <div class="scroll-hint">SCROLL<span></span></div>
+    </section>
+
+    <section class="lede" id="story">
+      <span class="label">Welcome to Miyakojima</span>
+      <h2>透明な海、白い砂浜、<br /><em>宮古島</em>でしか出会えない癒しの風景。</h2>
+      <div class="lede-body" data-reveal>
+        <div class="rule"></div>
+        <p class="first">宮古島は、沖縄県の南西部に位置する自然豊かな島です。サンゴ礁に囲まれた海は透明度が高く、その鮮やかな青は「宮古ブルー」と呼ばれています。</p>
+        <p>このページでは、海辺へ続く道、自然がつくり出した岩場、そして穏やかなビーチという三つの景色を紹介します。360°バーチャルツアーを通して、現地を歩いているような感覚で宮古島の美しさを体験してください。</p>
+      </div>
+    </section>
+
+    <section class="scenes" id="scenes">
+      <div class="section-head" data-reveal>
+        <span class="label">Three scenes</span>
+        <h2>ツアーの見どころ</h2>
+        <p>三つのシーンを順番に巡り、宮古島の海辺の魅力を体験します。</p>
+      </div>
+
+      <div class="scene-grid">
+        <article class="scene-card" data-reveal>
+          <div class="scene-image"><img src="img/miyako_242.jpg" alt="海へ続く石畳の道" /></div>
+          <div class="scene-text">
+            <span class="scene-number">SCENE 01</span>
+            <h3>道路と海辺</h3>
+            <p>石畳の道を進むと、その先に宮古ブルーの海が広がります。海へ近づいていく高揚感を味わえる入口のシーンです。</p>
+          </div>
+        </article>
+
+        <article class="scene-card reverse" data-reveal>
+          <div class="scene-image"><img src="img/miyako_246.jpg" alt="岩場と透明な海" /></div>
+          <div class="scene-text">
+            <span class="scene-number">SCENE 02</span>
+            <h3>磯石と海</h3>
+            <p>隆起サンゴ礁がつくった独特の岩場と、透き通る海を観察できます。宮古島の自然の力と歴史を感じられる風景です。</p>
+          </div>
+        </article>
+
+        <article class="scene-card" data-reveal>
+          <div class="scene-image"><img src="img/miyako_221.jpg" alt="砂浜と青い海" /></div>
+          <div class="scene-text">
+            <span class="scene-number">SCENE 03</span>
+            <h3>海とビーチ</h3>
+            <p>白い砂浜と穏やかな海が広がる、癒しのシーンです。波打ち際を見渡しながら、宮古島らしい開放感を楽しめます。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="tour" id="tour">
+      <div class="tour-inner" data-reveal>
+        <span class="kicker">360° Virtual Tour</span>
+        <h2>宮古島の海を、<br />360°で歩いてみよう。</h2>
+        <p>「Start Tour」を押すと、宮古島の360°バーチャルツアーが開きます。画面をドラッグして周囲を見渡し、青い矢印から次のシーンへ移動してください。</p>
+        <a id="tourButton" href="tour/index.html" class="btn">Start Tour <span>→</span></a>
+        <p class="tour-note" id="tourMessage" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot">
+      <a href="#top" class="logo">宮古ブルー</a>
+      <span>© 2026 HAO RUOYAN</span>
+      <span>観光デジタルメディア演習</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

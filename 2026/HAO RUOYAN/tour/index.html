@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>宮古島360°バーチャルツアー</title>
+  <meta name="description" content="宮古島の海辺を三つの360°シーンで巡るバーチャルツアーです。" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="panorama"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <strong>宮古島360°ツアー</strong>
+      <span>日本で出会う、世界級の青。</span>
+    </div>
+    <nav class="scene-nav" aria-label="シーンナビゲーション">
+      <button data-scene="path">シーン1 道路と海辺</button>
+      <button data-scene="coast">シーン2 磯石と海</button>
+      <button data-scene="beach">シーン3 海とビーチ</button>
+    </nav>
+    <button id="helpBtn" class="help-btn">操作方法</button>
+  </header>
+
+  <section id="sceneCard" class="scene-card" aria-live="polite"></section>
+
+  <div id="infoModal" class="modal" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button id="closeModal" class="close-btn" aria-label="閉じる">×</button>
+      <h2 id="modalTitle"></h2>
+      <p id="modalText"></p>
+    </div>
+  </div>
+
+  <div id="helpModal" class="modal" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+      <button id="closeHelp" class="close-btn" aria-label="閉じる">×</button>
+      <h2 id="helpTitle">操作方法</h2>
+      <p>画面をドラッグすると360°見渡せます。マウスホイールまたはピンチ操作で拡大・縮小できます。青い矢印をクリックすると次のシーンへ移動し、白い情報アイコンをクリックすると景色の説明が表示されます。上部のボタンからもシーンを切り替えられます。</p>
+    </div>
+  </div>
+
+  <a class="back-link" href="../index.html">← 紹介ページに戻る</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
