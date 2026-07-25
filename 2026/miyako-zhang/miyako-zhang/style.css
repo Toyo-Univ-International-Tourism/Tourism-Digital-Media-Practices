@@ -1,0 +1,43 @@
+body{
+    font-family: Arial, sans-serif;
+    text-align:center;
+
+    background-image:url("miyako_246.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    margin-top:80px;
+}
+
+h1{
+    color:#0080c8;
+}
+
+p{
+    width:70%;
+    margin:auto;
+    font-size:18px;
+    line-height:1.8;
+
+    background:rgba(255,255,255,0.7);
+    padding:20px;
+    border-radius:15px;
+}
+
+button{
+    margin-top:40px;
+    padding:15px 40px;
+    font-size:20px;
+    border:none;
+    border-radius:10px;
+    background:#00aaff;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#0077aa;
+    transform:scale(1.08);
+}
