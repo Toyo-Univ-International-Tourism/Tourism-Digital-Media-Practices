@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>宮古ブルーをめぐる旅｜360° Virtual Tour</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="#top" class="logo">
+      <span class="logo-main">MIYAKO</span>
+      <span class="logo-sub">宮古ブルーをめぐる旅</span>
+    </a>
+    <nav>
+      <a href="#concept">CONCEPT</a>
+      <a href="#tours">360° TOUR</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">MIYAKOJIMA VIRTUAL JOURNEY</p>
+        <h1>宮古ブルーを、<br>めぐる。</h1>
+        <p class="hero-copy">
+          島の青をたどり、心ほどける風景へ。<br>
+          宮古島をめぐる旅が、ここから始まります。
+        </p>
+        <a href="#tours" class="hero-btn">ツアーを見る</a>
+      </div>
+    </section>
+
+    <section class="concept" id="concept">
+      <p class="section-label">CONCEPT</p>
+      <h2>心ほどける、宮古ブルーの世界へ。 </h2>
+      <p class="concept-copy">
+        白い砂浜、透き通る海、どこまでも続く水平線。<br>
+        宮古島の景色をゆっくりとめぐりながら、
+        ゆったりと流れる島時間を、心ゆくまでお楽しみください。
+      </p>
+    </section>
+
+    <section class="tours" id="tours">
+      <div class="tour-title">
+        <p class="section-label">EXPLORE MIYAKOJIMA</p>
+        <h2>360° Virtual Tours</h2>
+        <p>カードの矢印を押すと、360°ツアーが開きます。</p>
+      </div>
+
+      <div class="tour-grid">
+        <article class="tour-card">
+          <div class="tour-photo"><img src="images/cover01.jpg" alt="白い砂浜と宮古ブルーの海"><span>360° VIEW</span></div>
+          <div class="tour-info">
+            <p class="feature">Virtual Tour</p>
+            <p class="number">01</p>
+            <h3>波打ち際に広がる宮古ブルー</h3>
+            <p class="description">白い砂浜に寄せる波と、淡い青から深い青へ変化する海を感じる。</p>
+            <button class="open-tour"
+              data-url="https://viewtoly-mvp-462744124914.asia-northeast1.run.app/v/IEFcMhD9qtme?embed=true&hotspots=0"
+              data-title="波打ち際に広がる宮古ブルー"
+              aria-label="Tour 01を開く">→</button>
+          </div>
+        </article>
+
+        <article class="tour-card">
+          <div class="tour-photo"><img src="images/cover02.jpg" alt="高台から見渡す珊瑚礁の海"><span>360° VIEW</span></div>
+          <div class="tour-info">
+            <p class="feature">Virtual Tour</p>
+            <p class="number">02</p>
+            <h3>珊瑚礁を見渡す海岸線</h3>
+            <p class="description">高台から広がる珊瑚礁と、水平線まで続く雄大な海景色を楽しむ。</p>
+            <button class="open-tour"
+              data-url="https://viewtoly-mvp-462744124914.asia-northeast1.run.app/v/Wzzl5CxIrQgH?embed=true&hotspots=0"
+              data-title="珊瑚礁を見渡す海岸線"
+              aria-label="Tour 02を開く">→</button>
+          </div>
+        </article>
+
+        <article class="tour-card">
+          <div class="tour-photo"><img src="images/cover03.jpg" alt="岩礁に囲まれた白い砂浜"><span>360° VIEW</span></div>
+          <div class="tour-info">
+            <p class="feature">Virtual Tour</p>
+            <p class="number">03</p>
+            <h3>白砂と岩礁が描く静かな浜</h3>
+            <p class="description">黒い岩礁に囲まれた白砂の浜で、静けさと澄んだ海の色に包まれる。</p>
+            <button class="open-tour"
+              data-url="https://viewtoly-mvp-462744124914.asia-northeast1.run.app/v/bt3tM7_yqhtQ?embed=true&hotspots=0"
+              data-title="白砂と岩礁が描く静かな浜"
+              aria-label="Tour 03を開く">→</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="ending">
+      <p>THE JOURNEY BEGINS HERE</p>
+      <h2>次の旅は、宮古島へ。</h2>
+      <a href="#tours">360°ツアーを見る</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>MIYAKO BLUE 360° TOUR</p>
+    <small>© 2026 MIYAKOJIMA VIRTUAL JOURNEY</small>
+  </footer>
+
+  <div class="modal" id="tourModal" aria-hidden="true">
+    <div class="modal-bg" data-close></div>
+    <div class="modal-box">
+      <div class="modal-head">
+        <div>
+          <p>360° VIRTUAL TOUR</p>
+          <h2 id="modalTitle">宮古島360°ツアー</h2>
+        </div>
+        <button class="close-btn" data-close aria-label="閉じる">×</button>
+      </div>
+      <div class="frame-wrap">
+        <iframe id="tourFrame"
+          src=""
+          title="宮古島360度バーチャルツアー"
+          allow="fullscreen; accelerometer; gyroscope"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

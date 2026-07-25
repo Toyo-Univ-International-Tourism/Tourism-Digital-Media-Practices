@@ -1,0 +1,457 @@
+:root {
+  --navy: #183266;
+  --navy-dark: #0d2147;
+  --text: #202532;
+  --gray: #6f7480;
+  --white: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--white);
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+}
+
+.site-header {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 5vw;
+  color: var(--white);
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.logo-main {
+  font-family: "Playfair Display", serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+}
+
+.logo-sub {
+  font-size: .68rem;
+  letter-spacing: .16em;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 30px;
+}
+
+.site-header nav a {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-decoration: none;
+}
+
+.hero {
+  display: flex;
+  min-height: 760px;
+  align-items: center;
+  padding: 150px 7vw 90px;
+  color: var(--white);
+  background:
+    linear-gradient(90deg, rgba(9,35,74,.72), rgba(9,35,74,.12)),
+    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=88")
+    center/cover no-repeat;
+}
+
+.hero-content {
+  max-width: 850px;
+}
+
+.eyebrow {
+  margin: 0 0 20px;
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .28em;
+}
+
+.hero h1 {
+  margin: 0;
+  font-family: "Playfair Display", "Noto Sans JP", serif;
+  font-size: clamp(3.8rem, 8vw, 7.5rem);
+  line-height: 1.15;
+}
+
+.hero-copy {
+  margin: 30px 0;
+  line-height: 2;
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 14px 30px;
+  border: 1px solid rgba(255,255,255,.75);
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+}
+
+.concept {
+  padding: 100px 8vw;
+  text-align: center;
+}
+
+.section-label {
+  margin: 0 0 10px;
+  color: var(--navy);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .25em;
+}
+
+.concept h2,
+.tour-title h2 {
+  margin: 0;
+  font-family: "Playfair Display", "Noto Sans JP", serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+.concept-copy {
+  max-width: 760px;
+  margin: 32px auto 0;
+  color: var(--gray);
+  line-height: 2.1;
+}
+
+.tours {
+  padding: 110px 3.2vw 95px;
+  background: linear-gradient(to bottom, #fff 0, #fff 230px, var(--navy) 230px, var(--navy) 100%);
+}
+
+.tour-title {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.tour-title > p:last-child {
+  color: var(--gray);
+  font-size: .88rem;
+}
+
+.tour-grid {
+  display: grid;
+  max-width: 1450px;
+  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.tour-card {
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 22px 50px rgba(3,17,45,.16);
+  transition: .3s;
+}
+
+.tour-card:hover {
+  transform: translateY(-8px);
+}
+
+.tour-photo {
+  position: relative;
+  aspect-ratio: 1/1;
+  background-position: center;
+  background-size: cover;
+}
+
+.tour-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+
+.tour-card:hover .tour-photo img {
+  transform: scale(1.03);
+}
+
+.tour-photo span {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 7px 12px;
+  border: 1px solid rgba(255,255,255,.7);
+  border-radius: 999px;
+  color: var(--white);
+  background: rgba(14,41,79,.35);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+
+.tour-info {
+  min-height: 300px;
+  padding: 28px 26px 32px;
+  text-align: center;
+}
+
+.feature {
+  margin: 0;
+  color: var(--navy);
+  font-family: "Playfair Display", serif;
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+.number {
+  margin: -2px 0 10px;
+  color: var(--navy);
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.tour-info h3 {
+  margin: 12px 0;
+  font-size: 1.16rem;
+}
+
+.description {
+  min-height: 52px;
+  margin: 0 auto 22px;
+  color: var(--gray);
+  font-size: .84rem;
+  line-height: 1.8;
+}
+
+.open-tour {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  margin: 0 auto;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: var(--white);
+  background: #242936;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.open-tour:hover {
+  transform: translateX(5px);
+  background: var(--navy);
+}
+
+.ending {
+  padding: 120px 20px;
+  color: var(--white);
+  text-align: center;
+  background:
+    linear-gradient(rgba(12,37,73,.62), rgba(12,37,73,.68)),
+    url("https://images.unsplash.com/photo-1528150177508-7cc0c36cda5c?auto=format&fit=crop&w=2200&q=88")
+    center/cover no-repeat;
+}
+
+.ending p {
+  margin: 0 0 10px;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .24em;
+}
+
+.ending h2 {
+  margin: 0 0 28px;
+  font-family: "Playfair Display", "Noto Sans JP", serif;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+}
+
+.ending a {
+  display: inline-block;
+  padding: 14px 30px;
+  border: 1px solid rgba(255,255,255,.7);
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 5vw;
+  color: rgba(255,255,255,.7);
+  background: var(--navy-dark);
+  font-size: .72rem;
+}
+
+footer p {
+  margin: 0;
+  color: var(--white);
+  font-family: "Playfair Display", serif;
+  letter-spacing: .12em;
+}
+
+/* modal */
+.modal {
+  position: fixed;
+  z-index: 2000;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(5,14,35,.86);
+  backdrop-filter: blur(9px);
+}
+
+.modal-box {
+  position: relative;
+  z-index: 1;
+  width: min(1200px, 100%);
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--white);
+}
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+}
+
+.modal-head p {
+  margin: 0 0 2px;
+  color: var(--navy);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .17em;
+}
+
+.modal-head h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.close-btn {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--navy);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.frame-wrap {
+  aspect-ratio: 16/9;
+  background: #09162e;
+}
+
+.frame-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 900px) {
+  .tour-grid {
+    max-width: 620px;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .tour-photo {
+    aspect-ratio: 16/10;
+  }
+
+  .tour-info {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    padding: 22px 20px;
+  }
+
+  .site-header nav {
+    display: none;
+  }
+
+  .hero {
+    min-height: 680px;
+    padding: 130px 24px 75px;
+  }
+
+  .hero h1 {
+    font-size: 3.2rem;
+  }
+
+  .hero-copy br {
+    display: none;
+  }
+
+  .concept {
+    padding: 80px 24px;
+  }
+
+  .tours {
+    padding: 85px 16px 70px;
+  }
+
+  .tour-photo {
+    aspect-ratio: 4/3;
+  }
+
+  footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .modal {
+    padding: 10px;
+  }
+
+  .frame-wrap {
+    aspect-ratio: 4/3;
+  }
+}
