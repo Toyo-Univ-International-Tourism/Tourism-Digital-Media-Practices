@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="宮古島の美しいビーチをオンラインで体験できるバーチャルツアーの紹介ページです。"
+  >
+
+  <title>宮古島ビーチ・バーチャルツアー</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#top" class="site-logo" aria-label="トップページへ戻る">
+        <span class="logo-mark">M</span>
+
+        <span class="logo-text">
+          <span class="logo-main">MIYAKO ISLAND</span>
+          <span class="logo-sub">Virtual Beach Tour</span>
+        </span>
+      </a>
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-label="メニューを開く"
+        aria-expanded="false"
+        aria-controls="globalNavigation"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav
+        class="global-navigation"
+        id="globalNavigation"
+        aria-label="メインナビゲーション"
+      >
+        <a href="#about">ツアーについて</a>
+        <a href="#beaches">ビーチ一覧</a>
+        <a href="#howto">楽しみ方</a>
+        <button
+          class="navigation-tour-button"
+          type="button"
+          data-open-tour
+        >
+          ツアーを開始
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-background" aria-hidden="true"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <p class="hero-eyebrow">
+          MIYAKO ISLAND VIRTUAL EXPERIENCE
+        </p>
+
+        <h1>
+          海を越えて、<br>
+          宮古ブルーの中へ。
+        </h1>
+
+        <p class="hero-description">
+          宮古島を代表するビーチを、360度映像でめぐる
+          バーチャルツアー。波の音や風景とともに、
+          島の空気をオンラインで体験できます。
+        </p>
+
+        <div class="hero-actions">
+          <button
+            class="primary-button"
+            type="button"
+            data-open-tour
+          >
+            <span class="play-icon" aria-hidden="true">▶</span>
+            バーチャルツアーを開始
+          </button>
+
+          <a href="#beaches" class="secondary-button">
+            ビーチを見る
+          </a>
+        </div>
+
+        <dl class="hero-information">
+          <div>
+            <dt>所要時間</dt>
+            <dd>約10分</dd>
+          </div>
+
+          <div>
+            <dt>体験スポット</dt>
+            <dd>3か所</dd>
+          </div>
+
+          <div>
+            <dt>視聴方法</dt>
+            <dd>PC・スマートフォン</dd>
+          </div>
+        </dl>
+      </div>
+
+      <a href="#about" class="scroll-guide">
+        <span>SCROLL</span>
+        <span class="scroll-line"></span>
+      </a>
+    </section>
+
+    <section class="about-section section" id="about">
+      <div class="section-inner about-layout">
+        <div class="section-heading reveal">
+          <p class="section-number">01</p>
+          <p class="section-label">ABOUT THE TOUR</p>
+
+          <h2>
+            いつでも、どこからでも、<br>
+            宮古島の海へ。
+          </h2>
+        </div>
+
+        <div class="about-content reveal">
+          <p class="about-lead">
+            このバーチャルツアーでは、宮古島を代表するビーチを
+            オンライン上で自由に巡ることができます。
+          </p>
+
+          <p>
+            360度映像を操作しながら、白い砂浜、透明度の高い海、
+            島ならではの穏やかな景観を体験できます。
+            宮古島への旅行を検討している方はもちろん、
+            遠方から島の風景を楽しみたい方にもおすすめです。
+          </p>
+
+          <ul class="feature-list">
+            <li>
+              <span class="feature-number">01</span>
+              <div>
+                <h3>360度の景観</h3>
+                <p>画面を動かしながら、周囲の景色を自由に見渡せます。</p>
+              </div>
+            </li>
+
+            <li>
+              <span class="feature-number">02</span>
+              <div>
+                <h3>音で感じる自然</h3>
+                <p>波や風の音とともに、ビーチの臨場感を楽しめます。</p>
+              </div>
+            </li>
+
+            <li>
+              <span class="feature-number">03</span>
+              <div>
+                <h3>旅行前の下見</h3>
+                <p>各ビーチの雰囲気や特徴を旅行前に確認できます。</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="beaches-section section" id="beaches">
+      <div class="section-inner">
+        <div class="section-heading beaches-heading reveal">
+          <div>
+            <p class="section-number">02</p>
+            <p class="section-label">BEACH LOCATIONS</p>
+
+            <h2>ツアーで巡るビーチ</h2>
+          </div>
+
+          <p class="section-introduction">
+            宮古島の魅力を象徴する、3つのビーチを収録しています。
+          </p>
+        </div>
+
+        <div class="beach-grid">
+          <article
+            class="beach-card reveal"
+            tabindex="0"
+            data-beach="与那覇前浜ビーチ"
+          >
+            <div class="beach-image-wrapper">
+              <img
+                src="images/yonaha-maehama.jpg"
+                alt="白い砂浜と青い海が広がる与那覇前浜ビーチ"
+              >
+
+              <span class="beach-duration">03:20</span>
+
+              <span class="beach-view-button" aria-hidden="true">
+                VIEW
+              </span>
+            </div>
+
+            <div class="beach-card-content">
+              <p class="beach-index">LOCATION 01</p>
+              <h3>与那覇前浜ビーチ</h3>
+              <p class="beach-name-en">YONAHA MAEHAMA BEACH</p>
+
+              <p>
+                約7キロメートルにわたって白砂が続く、
+                宮古島を代表するビーチです。
+              </p>
+            </div>
+          </article>
+
+          <article
+            class="beach-card reveal"
+            tabindex="0"
+            data-beach="砂山ビーチ"
+          >
+            <div class="beach-image-wrapper">
+              <img
+                src="images/sunayama.jpg"
+                alt="自然の岩のアーチが特徴的な砂山ビーチ"
+              >
+
+              <span class="beach-duration">02:40</span>
+
+              <span class="beach-view-button" aria-hidden="true">
+                VIEW
+              </span>
+            </div>
+
+            <div class="beach-card-content">
+              <p class="beach-index">LOCATION 02</p>
+              <h3>砂山ビーチ</h3>
+              <p class="beach-name-en">SUNAYAMA BEACH</p>
+
+              <p>
+                砂山を越えた先に海が広がる、
+                印象的な景観を持つビーチです。
+              </p>
+            </div>
+          </article>
+
+          <article
+            class="beach-card reveal"
+            tabindex="0"
+            data-beach="新城海岸"
+          >
+            <div class="beach-image-wrapper">
+              <img
+                src="images/aragusu.jpg"
+                alt="透明な海と浅瀬が広がる新城海岸"
+              >
+
+              <span class="beach-duration">03:10</span>
+
+              <span class="beach-view-button" aria-hidden="true">
+                VIEW
+              </span>
+            </div>
+
+            <div class="beach-card-content">
+              <p class="beach-index">LOCATION 03</p>
+              <h3>新城海岸</h3>
+              <p class="beach-name-en">ARAGUSUKU BEACH</p>
+
+              <p>
+                透明度の高い浅瀬が広がり、
+                海中の景観も楽しめる海岸です。
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="howto-section section" id="howto">
+      <div class="section-inner">
+        <div class="section-heading center-heading reveal">
+          <p class="section-number">03</p>
+          <p class="section-label">HOW TO ENJOY</p>
+          <h2>バーチャルツアーの楽しみ方</h2>
+        </div>
+
+        <ol class="step-list">
+          <li class="step-item reveal">
+            <span class="step-number">01</span>
+
+            <div class="step-icon" aria-hidden="true">
+              <span>▶</span>
+            </div>
+
+            <h3>ツアーを開始</h3>
+
+            <p>
+              ページ内の「ツアーを開始」ボタンを押します。
+            </p>
+          </li>
+
+          <li class="step-item reveal">
+            <span class="step-number">02</span>
+
+            <div class="step-icon cursor-icon" aria-hidden="true">
+              <span>↖</span>
+            </div>
+
+            <h3>画面を操作</h3>
+
+            <p>
+              ドラッグまたはスワイプして周囲を見渡します。
+            </p>
+          </li>
+
+          <li class="step-item reveal">
+            <span class="step-number">03</span>
+
+            <div class="step-icon" aria-hidden="true">
+              <span>◉</span>
+            </div>
+
+            <h3>スポットを移動</h3>
+
+            <p>
+              案内アイコンを選択して、次のビーチへ進みます。
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-background" aria-hidden="true"></div>
+      <div class="cta-overlay" aria-hidden="true"></div>
+
+      <div class="cta-content reveal">
+        <p class="cta-label">START YOUR JOURNEY</p>
+
+        <h2>
+          宮古ブルーを、<br>
+          体験しよう。
+        </h2>
+
+        <p>
+          画面の向こうに広がる宮古島の海へ。
+        </p>
+
+        <button
+          class="primary-button light-button"
+          type="button"
+          data-open-tour
+        >
+          <span class="play-icon" aria-hidden="true">▶</span>
+          バーチャルツアーを開始
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-mark">M</span>
+
+        <div>
+          <p>MIYAKO ISLAND</p>
+          <span>Virtual Beach Tour</span>
+        </div>
+      </div>
+
+      <p class="footer-note">
+        本ページは学習・デモンストレーション用のサンプルです。
+      </p>
+
+      <p class="copyright">
+        © <span id="currentYear"></span> Miyako Island Virtual Tour
+      </p>
+    </div>
+  </footer>
+
+  <div
+    class="tour-modal"
+    id="tourModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="tourModalTitle"
+    aria-hidden="true"
+  >
+    <div class="tour-modal-backdrop" data-close-tour></div>
+
+    <div class="tour-modal-content">
+      <button
+        class="modal-close-button"
+        id="modalCloseButton"
+        type="button"
+        aria-label="閉じる"
+        data-close-tour
+      >
+        ×
+      </button>
+
+      <div class="modal-visual">
+        <div class="modal-play-mark" aria-hidden="true">▶</div>
+      </div>
+
+      <div class="modal-text">
+        <p class="modal-label">VIRTUAL TOUR DEMO</p>
+
+        <h2 id="tourModalTitle">
+          バーチャルツアーを開始
+        </h2>
+
+        <p id="tourModalDescription">
+          ここから360度ビーチツアーが開始される想定です。
+          このサンプルでは、実際の360度コンテンツは表示されません。
+        </p>
+
+        <button
+          class="primary-button"
+          id="demoStartButton"
+          type="button"
+        >
+          デモ画面へ進む
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+  >
+    サンプルのため、実際のツアー画面はありません。
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
